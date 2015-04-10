@@ -1,8 +1,7 @@
-int rec()
-{
-	rec();
-}
 main
 {
-	put(x);
+	foreach(i in 10)
+	{
+		i = i + 1;
+	}
 }

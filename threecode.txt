@@ -1,0 +1,14 @@
+main:
+i = 0
+label_1:
+temp_1 = i < 10
+if temp_1 goto label_2
+goto label_3
+label_2:
+temp_2 = i + 1
+i = temp_2
+temp_3 = i
+temp_1 = i + 1
+i = temp_1
+goto label_1
+label_3:

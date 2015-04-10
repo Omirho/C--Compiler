@@ -8,6 +8,7 @@ using namespace std;
 #define YY_DECL extern "C" int yylex()
 #define YYPRINT(file, type, value)   yyprint (file, type, value)
 #define token(s) { (yylval.tval) = new ttnode(); (yylval.tval)->item = yytext; (yylval.tval)->identifier = #s; return s; }
+#define tokk(val,s) { (yylval.tval) = new ttnode(); (yylval.tval)->item = val; (yylval.tval)->identifier = #s; return s; }
 
 %}
 %option yylineno
@@ -31,8 +32,8 @@ IDENTIFIER ([A-Za-z_]([A-Za-z0-9_])*)
 "int" 			{ token( INT); }
 "float" 		{ token( FLOAT); }
 "bool"			{ token( BOOL); }
-"true" 			{ token( TRUE); }
-"false" 		{ token( FALSE);}
+"true" 			{ tokk("1", TRUE); }
+"false" 		{ tokk("0", FALSE);}
 "in" 			{ token( IN); }
 "get" 			{ token( GET); }
 "put" 			{ token( PUT); }

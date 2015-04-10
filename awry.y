@@ -8,6 +8,7 @@
 using namespace std;
 #include "ttree.h"
 #include "ttfunc.cpp"
+#include "threecode.cpp"
 
 
 ttnode *root;
@@ -216,35 +217,35 @@ and_expression
 	
 relation_expression 
 	: relation_expression op3 simple_expression 
-		{ $$ = make_node("","relation_expression",$1,$2,$3); }
+		{ $$ = make_node("op","relation_expression",$1,$2,$3); }
 	| simple_expression
 		{ $$ = make_node("","relation_expression",$1,NULL,NULL); }
 	;
 	
 simple_expression 
 	: simple_expression op1 mul_expression 
-		{ $$ = make_node("","simple_expression",$1,$2,$3); }
+		{ $$ = make_node("op","simple_expression",$1,$2,$3); }
 	| mul_expression
 		{ $$ = make_node("","simple_expression",$1,NULL,NULL); }
 	;
 
 mul_expression 
 	: mul_expression op2 unary_expression 
-		{ $$ = make_node("","mul_expression",$1,$2,$3); }
+		{ $$ = make_node("op","mul_expression",$1,$2,$3); }
 	| unary_expression
 		{ $$ = make_node("","mul_expression",$1,NULL,NULL); }
 	;
 
 unary_expression 
 	: unary_op unary_expression 
-		{ $$ = make_node("","unary_expression",$1,$2,NULL); }
+		{ $$ = make_node("op","unary_expression",$1,$2,NULL); }
 	| climax
 		{ $$ = make_node("","unary_expression",$1,NULL,NULL); }
 	;
 
 climax 
 	: '(' expression ')' 
-		{ $$ = make_node("","climax",$2,NULL,NULL); }
+		{ $$ = make_node("op","climax",$2,NULL,NULL); }
 	| call 
 		{ $$ = make_node("","climax",$1,NULL,NULL); }
 	| constants 
@@ -334,6 +335,7 @@ int main()
 	else
 	{
 		cerr << "Success!\n";
-		printtree(root); printtreeold(root, "+-- ");
+		generatecode(root);
+		//printtree(root); printtreeold(root, "+-- ");
 	}
 }
