@@ -1,0 +1,8 @@
+int rec()
+{
+	rec();
+}
+main
+{
+	put(x);
+}
