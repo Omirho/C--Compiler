@@ -1,14 +1,23 @@
 main:
-i = 0
+i = 10
 label_1:
-temp_1 = i < 10
-if temp_1 goto label_2
+temp_2 = i - 1
+i = temp_2
+if i goto label_2
 goto label_3
 label_2:
-temp_2 = i + 1
-i = temp_2
-temp_3 = i
-temp_1 = i + 1
-i = temp_1
+write i
+temp_4 = i == 5
+if temp_4 goto label_4
+goto label_5
+label_4:
+goto label_1
+label_5:
+temp_5 = i == 2
+if temp_5 goto label_6
+goto label_7
+label_6:
+goto label_3
+label_7:
 goto label_1
 label_3:

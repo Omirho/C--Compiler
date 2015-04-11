@@ -1644,7 +1644,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 93 "awry.y"
-    { (yyval.tval) = make_node("?","epsilon",NULL,NULL,NULL); ;}
+    { (yyval.tval) = make_node("","epsilon",NULL,NULL,NULL); ;}
     break;
 
   case 15:
@@ -1749,14 +1749,14 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 144 "awry.y"
-    { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
+    { (yyval.tval) = make_node("break","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
 #line 146 "awry.y"
-    { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
+    { (yyval.tval) = make_node("continue","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
     break;
 
   case 31:
@@ -1791,7 +1791,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 158 "awry.y"
-    { (yyval.tval) = make_node("","condition_stat",(yyvsp[(3) - (11)].tval),(yyvsp[(6) - (11)].tval),(yyvsp[(10) - (11)].tval)); ;}
+    { (yyval.tval) = make_node("op","condition_stat",(yyvsp[(3) - (11)].tval),(yyvsp[(6) - (11)].tval),(yyvsp[(10) - (11)].tval)); ;}
     break;
 
   case 36:
@@ -1840,7 +1840,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 184 "awry.y"
-    { (yyval.tval) = make_node("","return_stat",(yyvsp[(1) - (2)].tval),(yyvsp[(2) - (2)].tval),NULL); ;}
+    { (yyval.tval) = make_node("op","return_stat",(yyvsp[(1) - (2)].tval),(yyvsp[(2) - (2)].tval),NULL); ;}
     break;
 
   case 43:

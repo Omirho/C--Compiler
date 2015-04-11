@@ -90,7 +90,7 @@ type
 
 epsilon 
 	: 
-		{ $$ = make_node("?","epsilon",NULL,NULL,NULL); }
+		{ $$ = make_node("","epsilon",NULL,NULL,NULL); }
 	;
 
 function_declaration 
@@ -141,9 +141,9 @@ statement
 	| loop_stat 
 		{ $$ = make_node("","statement",$1,NULL,NULL); }
 	| BREAK ';' 
-		{ $$ = make_node("","statement",$1,NULL,NULL); }
+		{ $$ = make_node("break","statement",$1,NULL,NULL); }
 	| CONTINUE ';' 
-		{ $$ = make_node("","statement",$1,NULL,NULL); }
+		{ $$ = make_node("continue","statement",$1,NULL,NULL); }
 	| return_stat ';' 
 		{ $$ = make_node("","statement",$1,NULL,NULL); }
 	| read ';'
@@ -155,7 +155,7 @@ statement
 
 condition_stat 
 	: IF '(' expression ')' '{' code_block '}' ELSE '{' code_block '}' 
-		{ $$ = make_node("","condition_stat",$3,$6,$10); }
+		{ $$ = make_node("op","condition_stat",$3,$6,$10); }
 	| IF '(' expression ')' '{' code_block '}'
 		{ $$ = make_node("","condition_stat",$3,$6,NULL); }
 	;
@@ -181,7 +181,7 @@ return_stat
 	: RETURN  
 		{ $$ = make_node("","return_stat",$1,NULL,NULL); }
 	| RETURN expression
-		{ $$ = make_node("","return_stat",$1,$2,NULL); }
+		{ $$ = make_node("op","return_stat",$1,$2,NULL); }
 	;
 
 read 
