@@ -1,5 +1,5 @@
 ofstream tcode("threecode.txt");
-string def = "";
+
 string newlabel()
 {
 	static int c = 0;
@@ -10,9 +10,8 @@ string newlabel()
 
 string newtemp()
 {
-	static int c = 0;
 	stringstream ss;
-	ss << ++c;
+	ss << ++tempco;
 	return "temp_" + ss.str();
 }
 
@@ -24,7 +23,9 @@ string generatecode(ttnode *t)
 	if(t->identifier == "main_function")
 	{
 		tcode << "main" << ":" << endl;
+		genmips("main");
 		string a = generatecode(t->first);
+		genmips(def,"exit");
 		return def;
 	}
 	if(t->identifier == "variable")
@@ -34,9 +35,15 @@ string generatecode(ttnode *t)
 	if(t->identifier == "statement")
 	{
 		if(t->item == "break")
+		{
 			tcode << "goto " << breaks.back() << endl;
-		if(t->item == "continue")
+			genmips(def,"goto",breaks.back());
+		}
+		else if(t->item == "continue")
+		{
 			tcode << "goto " << continues.back() << endl;
+			genmips(def,"goto",continues.back());
+		}
 		else
 			string a = generatecode(t->first);
 		return def;
@@ -47,10 +54,14 @@ string generatecode(ttnode *t)
 		string end = newlabel();
 		string a = generatecode(t->first);
 		tcode << "if " << a << " goto " << start << endl;
+		genmips(def,"if",a,def,start);
 		tcode << "goto " << end << endl;
+		genmips(def,"goto",end);
 		tcode << start << ":" << endl;
+		genmips(start);
 		string b = generatecode(t->second);
 		tcode << end << ":" << endl;
+		genmips(end);
 		if(t->item == "op")
 		{
 			string c = generatecode(t->third);
@@ -69,17 +80,26 @@ string generatecode(ttnode *t)
 		breaks.push_back(end);
 		continues.push_back(con);
 		tcode << a << " = 0" << endl;
+		genmips(def,"+","0","0",a);
 		tcode << start << ":" << endl;
+		genmips(start);
 		tcode << temp << " = " << a << " < " << b << endl;
+		genmips(def,"<",a,b,temp);
 		tcode << "if " << temp << " goto " << middle << endl;
+		genmips(def,"if",temp,def,middle);
 		tcode << "goto " << end << endl;
+		genmips(def,"goto",end);
 		tcode << middle << ":" << endl;
+		genmips(middle);
 		string c = generatecode(t->third);
 		tcode << con << ":" << endl;
-		tcode << temp << " = " << a << " + 1" << endl;
-		tcode << a << " = " << temp << endl;
+		genmips(con);
+		tcode << a << " = " << a << " + 1" << endl;
+		genmips(def,"+",a,"1",a);
 		tcode << "goto " << start << endl;
+		genmips(def,"goto",start);
 		tcode << end << ":" << endl;
+		genmips(end);
 		breaks.pop_back();
 		continues.pop_back();
 		return def;
@@ -92,13 +112,19 @@ string generatecode(ttnode *t)
 		breaks.push_back(end);
 		continues.push_back(start);
 		tcode << start << ":" << endl;
+		genmips(start);
 		string a = generatecode(t->first);
 		tcode << "if " << a << " goto " << middle << endl;
+		genmips(def,"if",a,def,middle);
 		tcode << "goto " << end << endl;
+		genmips(def,"goto",end);
 		tcode << middle << ":" << endl;
+		genmips(middle);
 		string b = generatecode(t->second);
 		tcode << "goto " << start << endl;
+		genmips(def,"goto",start);
 		tcode << end << ":" << endl;
+		genmips(end);
 		breaks.pop_back();
 		continues.pop_back();
 		return def;
@@ -109,6 +135,7 @@ string generatecode(ttnode *t)
 		{
 			string a = generatecode(t->first);
 			tcode << "return " << a << endl;
+			genmips(def,"return",a);
 		}
 		else
 		{
@@ -120,12 +147,14 @@ string generatecode(ttnode *t)
 	{
 		string a = generatecode(t->first);
 		tcode << "read " << a << endl;
+		genmips(def,"read",a);
 		return a;
 	}
 	if(t->identifier == "write")
 	{
 		string a = generatecode(t->first);
 		tcode << "write " << a << endl;
+		genmips(def,"write",a);
 		return a;
 	}
 	if(t->identifier == "expression")
@@ -134,9 +163,10 @@ string generatecode(ttnode *t)
 		{
 			string a = generatecode(t->second);
 			string b = generatecode(t->first);
-			string ret = newtemp();
 			tcode << b << " = " << a << endl;
+			genmips(def,"+",a,"0",b);
 			return b;
+			string ret = newtemp();
 			tcode << ret << " = " << b << endl;
 			return ret;
 		}
@@ -153,6 +183,7 @@ string generatecode(ttnode *t)
 			string b = generatecode(t->first);
 			string ret = newtemp();
 			tcode << ret << " = " << b << " || " << a << endl;
+			genmips(def,"||",b,a,ret);
 			return ret;
 		}
 		else
@@ -168,6 +199,7 @@ string generatecode(ttnode *t)
 			string b = generatecode(t->first);
 			string ret = newtemp();
 			tcode << ret << " = " << b << " && " << a << endl;
+			genmips(def,"&&",b,a,ret);
 			return ret;
 		}
 		else
@@ -184,6 +216,7 @@ string generatecode(ttnode *t)
 			string c = generatecode(t->second);
 			string ret = newtemp();
 			tcode << ret << " = " << b << " " << c << " " << a << endl;
+			genmips(def,c,b,a,ret);
 			return ret;
 		}
 		else
@@ -200,6 +233,7 @@ string generatecode(ttnode *t)
 			string c = generatecode(t->second);
 			string ret = newtemp();
 			tcode << ret << " = " << b << " " << c << " " << a << endl;
+			genmips(def,c,b,a,ret);
 			return ret;
 		}
 		else
@@ -216,6 +250,7 @@ string generatecode(ttnode *t)
 			string c = generatecode(t->second);
 			string ret = newtemp();
 			tcode << ret << " = " << b << " " << c << " " << a << endl;
+			genmips(def,c,b,a,ret);
 			return ret;
 		}
 		else
@@ -231,6 +266,7 @@ string generatecode(ttnode *t)
 			string b = generatecode(t->first);
 			string ret = newtemp();
 			tcode << ret << " = " << b << a << endl;
+			genmips(def,b,"0",a,ret);
 			return ret;
 		}
 		else

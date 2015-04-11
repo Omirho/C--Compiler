@@ -5,9 +5,11 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <map>
 using namespace std;
 #include "ttree.h"
 #include "ttfunc.cpp"
+#include "mipscode.cpp"
 #include "threecode.cpp"
 
 
@@ -335,7 +337,9 @@ int main()
 	else
 	{
 		cerr << "Success!\n";
+		mcode << ".text" << endl;
 		generatecode(root);
+		data();
 		//printtree(root); printtreeold(root, "+-- ");
 	}
 }

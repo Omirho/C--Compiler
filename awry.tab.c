@@ -76,9 +76,11 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <map>
 using namespace std;
 #include "ttree.h"
 #include "ttfunc.cpp"
+#include "mipscode.cpp"
 #include "threecode.cpp"
 
 
@@ -91,7 +93,7 @@ void yyerror(string s);
 
 
 /* Line 189 of yacc.c  */
-#line 95 "awry.tab.c"
+#line 97 "awry.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -160,14 +162,14 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 23 "awry.y"
+#line 25 "awry.y"
 
 	ttnode *tval;
 
 
 
 /* Line 214 of yacc.c  */
-#line 171 "awry.tab.c"
+#line 173 "awry.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -179,7 +181,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 183 "awry.tab.c"
+#line 185 "awry.tab.c"
 
 #ifdef short
 # undef short
@@ -496,15 +498,15 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    47,    47,    52,    54,    59,    61,    66,    71,    73,
-      78,    83,    85,    87,    93,    97,    99,   104,   106,   111,
-     113,   118,   123,   128,   130,   135,   137,   139,   141,   143,
-     145,   147,   149,   151,   153,   157,   159,   164,   166,   171,
-     176,   181,   183,   188,   193,   198,   200,   205,   207,   212,
-     214,   219,   221,   226,   228,   233,   235,   240,   242,   247,
-     249,   251,   253,   258,   263,   265,   270,   272,   277,   279,
-     281,   283,   288,   290,   295,   297,   302,   304,   306,   308,
-     310,   312,   317
+       0,    49,    49,    54,    56,    61,    63,    68,    73,    75,
+      80,    85,    87,    89,    95,    99,   101,   106,   108,   113,
+     115,   120,   125,   130,   132,   137,   139,   141,   143,   145,
+     147,   149,   151,   153,   155,   159,   161,   166,   168,   173,
+     178,   183,   185,   190,   195,   200,   202,   207,   209,   214,
+     216,   221,   223,   228,   230,   235,   237,   242,   244,   249,
+     251,   253,   255,   260,   265,   267,   272,   274,   279,   281,
+     283,   285,   290,   292,   297,   299,   304,   306,   308,   310,
+     312,   314,   319
 };
 #endif
 
@@ -1559,574 +1561,574 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 48 "awry.y"
+#line 50 "awry.y"
     { root = make_node("","program",(yyvsp[(1) - (2)].tval),(yyvsp[(2) - (2)].tval),NULL); ;}
     break;
 
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 53 "awry.y"
+#line 55 "awry.y"
     { (yyval.tval) = make_node("","declaration_list",(yyvsp[(1) - (2)].tval),(yyvsp[(2) - (2)].tval),NULL); ;}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 55 "awry.y"
+#line 57 "awry.y"
     { (yyval.tval) = make_node("","declaration_list",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 60 "awry.y"
+#line 62 "awry.y"
     { (yyval.tval) = make_node("","declaration",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 62 "awry.y"
+#line 64 "awry.y"
     { (yyval.tval) = make_node("","declaration",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 67 "awry.y"
+#line 69 "awry.y"
     { (yyval.tval) = make_node("","variable_declaration",(yyvsp[(1) - (3)].tval),(yyvsp[(2) - (3)].tval),NULL); ;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 72 "awry.y"
+#line 74 "awry.y"
     { (yyval.tval) = make_node("","variable_list",(yyvsp[(1) - (3)].tval),(yyvsp[(3) - (3)].tval),NULL); ;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 74 "awry.y"
+#line 76 "awry.y"
     { (yyval.tval) = make_node("","variable_list",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 79 "awry.y"
+#line 81 "awry.y"
     { (yyval.tval) = make_node("","variable",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 84 "awry.y"
+#line 86 "awry.y"
     { (yyval.tval) = make_node("","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 86 "awry.y"
+#line 88 "awry.y"
     { (yyval.tval) = make_node("","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 88 "awry.y"
+#line 90 "awry.y"
     { (yyval.tval) = make_node("","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 93 "awry.y"
+#line 95 "awry.y"
     { (yyval.tval) = make_node("","epsilon",NULL,NULL,NULL); ;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 98 "awry.y"
+#line 100 "awry.y"
     { (yyval.tval) = make_node((yyvsp[(2) - (8)].tval)->item,"function_declaration",(yyvsp[(1) - (8)].tval),(yyvsp[(4) - (8)].tval),(yyvsp[(7) - (8)].tval)); ;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 100 "awry.y"
+#line 102 "awry.y"
     { (yyval.tval) = make_node((yyvsp[(1) - (7)].tval)->item,"function_declaration",(yyvsp[(3) - (7)].tval),(yyvsp[(6) - (7)].tval),NULL); ;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 105 "awry.y"
+#line 107 "awry.y"
     { (yyval.tval) = make_node("","parameters",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 107 "awry.y"
+#line 109 "awry.y"
     { (yyval.tval) = make_node("","parameters",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 112 "awry.y"
+#line 114 "awry.y"
     { (yyval.tval) = make_node("","parameter_list",(yyvsp[(1) - (3)].tval),(yyvsp[(3) - (3)].tval),NULL); ;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 114 "awry.y"
+#line 116 "awry.y"
     { (yyval.tval) = make_node("","parameter_list",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 119 "awry.y"
+#line 121 "awry.y"
     { (yyval.tval) = make_node("","parameter",(yyvsp[(1) - (2)].tval),(yyvsp[(2) - (2)].tval),NULL); ;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 124 "awry.y"
+#line 126 "awry.y"
     { (yyval.tval) = make_node("","main_function",(yyvsp[(3) - (4)].tval),NULL,NULL); ;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 129 "awry.y"
+#line 131 "awry.y"
     { (yyval.tval) = make_node("","code_block",(yyvsp[(1) - (2)].tval),(yyvsp[(2) - (2)].tval),NULL); ;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 131 "awry.y"
+#line 133 "awry.y"
     { (yyval.tval) = make_node("","code_block",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 136 "awry.y"
+#line 138 "awry.y"
     { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 138 "awry.y"
+#line 140 "awry.y"
     { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 140 "awry.y"
+#line 142 "awry.y"
     { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 142 "awry.y"
+#line 144 "awry.y"
     { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 144 "awry.y"
+#line 146 "awry.y"
     { (yyval.tval) = make_node("break","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 146 "awry.y"
+#line 148 "awry.y"
     { (yyval.tval) = make_node("continue","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 148 "awry.y"
+#line 150 "awry.y"
     { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 150 "awry.y"
+#line 152 "awry.y"
     { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 152 "awry.y"
+#line 154 "awry.y"
     { (yyval.tval) = make_node("","statement",(yyvsp[(1) - (2)].tval),NULL,NULL); ;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 153 "awry.y"
+#line 155 "awry.y"
     { yyerrok;                  ;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 158 "awry.y"
+#line 160 "awry.y"
     { (yyval.tval) = make_node("op","condition_stat",(yyvsp[(3) - (11)].tval),(yyvsp[(6) - (11)].tval),(yyvsp[(10) - (11)].tval)); ;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 160 "awry.y"
+#line 162 "awry.y"
     { (yyval.tval) = make_node("","condition_stat",(yyvsp[(3) - (7)].tval),(yyvsp[(6) - (7)].tval),NULL); ;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 165 "awry.y"
+#line 167 "awry.y"
     { (yyval.tval) = make_node("","loop_stat",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 167 "awry.y"
+#line 169 "awry.y"
     { (yyval.tval) = make_node("","loop_stat",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 172 "awry.y"
+#line 174 "awry.y"
     { (yyval.tval) = make_node("","for_loop",(yyvsp[(3) - (9)].tval),(yyvsp[(5) - (9)].tval),(yyvsp[(8) - (9)].tval)); ;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 177 "awry.y"
+#line 179 "awry.y"
     { (yyval.tval) = make_node("","while_loop",(yyvsp[(3) - (7)].tval),(yyvsp[(6) - (7)].tval),NULL); ;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 182 "awry.y"
+#line 184 "awry.y"
     { (yyval.tval) = make_node("","return_stat",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 184 "awry.y"
+#line 186 "awry.y"
     { (yyval.tval) = make_node("op","return_stat",(yyvsp[(1) - (2)].tval),(yyvsp[(2) - (2)].tval),NULL); ;}
     break;
 
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 189 "awry.y"
+#line 191 "awry.y"
     { (yyval.tval) = make_node("get","read",(yyvsp[(3) - (4)].tval),NULL,NULL); ;}
     break;
 
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 194 "awry.y"
+#line 196 "awry.y"
     { (yyval.tval) = make_node("put","write",(yyvsp[(3) - (4)].tval),NULL,NULL); ;}
     break;
 
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 199 "awry.y"
+#line 201 "awry.y"
     { (yyval.tval) = make_node("=","expression",(yyvsp[(1) - (3)].tval),(yyvsp[(3) - (3)].tval),NULL); ;}
     break;
 
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 201 "awry.y"
+#line 203 "awry.y"
     { (yyval.tval) = make_node("","expression",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 206 "awry.y"
+#line 208 "awry.y"
     { (yyval.tval) = make_node("or","logic_expression",(yyvsp[(1) - (3)].tval),(yyvsp[(3) - (3)].tval),NULL); ;}
     break;
 
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 208 "awry.y"
+#line 210 "awry.y"
     { (yyval.tval) = make_node("","logic_expression",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 49:
 
 /* Line 1455 of yacc.c  */
-#line 213 "awry.y"
+#line 215 "awry.y"
     { (yyval.tval) = make_node("and","and_expression",(yyvsp[(1) - (3)].tval),(yyvsp[(3) - (3)].tval),NULL); ;}
     break;
 
   case 50:
 
 /* Line 1455 of yacc.c  */
-#line 215 "awry.y"
+#line 217 "awry.y"
     { (yyval.tval) = make_node("","and_expression",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 51:
 
 /* Line 1455 of yacc.c  */
-#line 220 "awry.y"
+#line 222 "awry.y"
     { (yyval.tval) = make_node("op","relation_expression",(yyvsp[(1) - (3)].tval),(yyvsp[(2) - (3)].tval),(yyvsp[(3) - (3)].tval)); ;}
     break;
 
   case 52:
 
 /* Line 1455 of yacc.c  */
-#line 222 "awry.y"
+#line 224 "awry.y"
     { (yyval.tval) = make_node("","relation_expression",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 53:
 
 /* Line 1455 of yacc.c  */
-#line 227 "awry.y"
+#line 229 "awry.y"
     { (yyval.tval) = make_node("op","simple_expression",(yyvsp[(1) - (3)].tval),(yyvsp[(2) - (3)].tval),(yyvsp[(3) - (3)].tval)); ;}
     break;
 
   case 54:
 
 /* Line 1455 of yacc.c  */
-#line 229 "awry.y"
+#line 231 "awry.y"
     { (yyval.tval) = make_node("","simple_expression",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 55:
 
 /* Line 1455 of yacc.c  */
-#line 234 "awry.y"
+#line 236 "awry.y"
     { (yyval.tval) = make_node("op","mul_expression",(yyvsp[(1) - (3)].tval),(yyvsp[(2) - (3)].tval),(yyvsp[(3) - (3)].tval)); ;}
     break;
 
   case 56:
 
 /* Line 1455 of yacc.c  */
-#line 236 "awry.y"
+#line 238 "awry.y"
     { (yyval.tval) = make_node("","mul_expression",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 57:
 
 /* Line 1455 of yacc.c  */
-#line 241 "awry.y"
+#line 243 "awry.y"
     { (yyval.tval) = make_node("op","unary_expression",(yyvsp[(1) - (2)].tval),(yyvsp[(2) - (2)].tval),NULL); ;}
     break;
 
   case 58:
 
 /* Line 1455 of yacc.c  */
-#line 243 "awry.y"
+#line 245 "awry.y"
     { (yyval.tval) = make_node("","unary_expression",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 59:
 
 /* Line 1455 of yacc.c  */
-#line 248 "awry.y"
+#line 250 "awry.y"
     { (yyval.tval) = make_node("op","climax",(yyvsp[(2) - (3)].tval),NULL,NULL); ;}
     break;
 
   case 60:
 
 /* Line 1455 of yacc.c  */
-#line 250 "awry.y"
+#line 252 "awry.y"
     { (yyval.tval) = make_node("","climax",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 61:
 
 /* Line 1455 of yacc.c  */
-#line 252 "awry.y"
+#line 254 "awry.y"
     { (yyval.tval) = make_node("","climax",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 62:
 
 /* Line 1455 of yacc.c  */
-#line 254 "awry.y"
+#line 256 "awry.y"
     { (yyval.tval) = make_node("","climax",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 63:
 
 /* Line 1455 of yacc.c  */
-#line 259 "awry.y"
+#line 261 "awry.y"
     { (yyval.tval) = make_node((yyvsp[(1) - (4)].tval)->item,"call",(yyvsp[(3) - (4)].tval),NULL,NULL); ;}
     break;
 
   case 64:
 
 /* Line 1455 of yacc.c  */
-#line 264 "awry.y"
+#line 266 "awry.y"
     { (yyval.tval) = make_node("","arguments",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 65:
 
 /* Line 1455 of yacc.c  */
-#line 266 "awry.y"
+#line 268 "awry.y"
     { (yyval.tval) = make_node("","arguments",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 66:
 
 /* Line 1455 of yacc.c  */
-#line 271 "awry.y"
+#line 273 "awry.y"
     { (yyval.tval) = make_node("","argument_list",(yyvsp[(1) - (3)].tval),(yyvsp[(3) - (3)].tval),NULL); ;}
     break;
 
   case 67:
 
 /* Line 1455 of yacc.c  */
-#line 273 "awry.y"
+#line 275 "awry.y"
     { (yyval.tval) = make_node("","argument_list",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 68:
 
 /* Line 1455 of yacc.c  */
-#line 278 "awry.y"
+#line 280 "awry.y"
     { (yyval.tval) = make_node("","constants",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 69:
 
 /* Line 1455 of yacc.c  */
-#line 280 "awry.y"
+#line 282 "awry.y"
     { (yyval.tval) = make_node("","constants",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 70:
 
 /* Line 1455 of yacc.c  */
-#line 282 "awry.y"
+#line 284 "awry.y"
     { (yyval.tval) = make_node("","constants",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 71:
 
 /* Line 1455 of yacc.c  */
-#line 284 "awry.y"
+#line 286 "awry.y"
     { (yyval.tval) = make_node("","constants",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 72:
 
 /* Line 1455 of yacc.c  */
-#line 289 "awry.y"
+#line 291 "awry.y"
     { (yyval.tval) = make_node("","op1",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 73:
 
 /* Line 1455 of yacc.c  */
-#line 291 "awry.y"
+#line 293 "awry.y"
     { (yyval.tval) = make_node("","op1",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 74:
 
 /* Line 1455 of yacc.c  */
-#line 296 "awry.y"
+#line 298 "awry.y"
     { (yyval.tval) = make_node("","op2",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 75:
 
 /* Line 1455 of yacc.c  */
-#line 298 "awry.y"
+#line 300 "awry.y"
     { (yyval.tval) = make_node("","op2",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 76:
 
 /* Line 1455 of yacc.c  */
-#line 303 "awry.y"
+#line 305 "awry.y"
     { (yyval.tval) = make_node("","op3",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 77:
 
 /* Line 1455 of yacc.c  */
-#line 305 "awry.y"
+#line 307 "awry.y"
     { (yyval.tval) = make_node("","op3",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 78:
 
 /* Line 1455 of yacc.c  */
-#line 307 "awry.y"
+#line 309 "awry.y"
     { (yyval.tval) = make_node("","op3",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 79:
 
 /* Line 1455 of yacc.c  */
-#line 309 "awry.y"
+#line 311 "awry.y"
     { (yyval.tval) = make_node("","op3",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 80:
 
 /* Line 1455 of yacc.c  */
-#line 311 "awry.y"
+#line 313 "awry.y"
     { (yyval.tval) = make_node("","op3",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 81:
 
 /* Line 1455 of yacc.c  */
-#line 313 "awry.y"
+#line 315 "awry.y"
     { (yyval.tval) = make_node("","op3",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 82:
 
 /* Line 1455 of yacc.c  */
-#line 318 "awry.y"
+#line 320 "awry.y"
     { (yyval.tval) = make_node("","unary_op",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 2130 "awry.tab.c"
+#line 2132 "awry.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2338,7 +2340,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 321 "awry.y"
+#line 323 "awry.y"
 
 bool fail;
 void yyerror(string s) 
@@ -2356,7 +2358,9 @@ int main()
 	else
 	{
 		cerr << "Success!\n";
+		mcode << ".text" << endl;
 		generatecode(root);
+		data();
 		//printtree(root); printtreeold(root, "+-- ");
 	}
 }
