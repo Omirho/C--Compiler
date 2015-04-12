@@ -27,7 +27,7 @@ public:
     Type type;
 	int scope, param_count;
 	vector<param> paras;
-    symbol(string nm, string v, Type t): name(nm), val(v), type(t) {}
+    symbol(string nm,  Type t, int Scope): name(nm), scope(Scope), type(t) {}
     symbol(string nm): name(nm), val(string()), type(t_int) {}
 	string genKey()
 	{
@@ -73,11 +73,12 @@ public:
 	
 	vector<string> getparams(string id)
 	{
-		symbol func = table[1].find(id)->second;
+		symbol func = table[0].find(id)->second;
 		vector<string> r;
 		for(int i = 0; i < func.param_count; ++i)
 		{
-			r.push_back(func.paras[i].genKey());
+			symbol sx(func.paras[i].name, func.paras[i].type, func.scope + 1);
+			r.push_back(sx.genKey());
 		}
 		return r;
 	}

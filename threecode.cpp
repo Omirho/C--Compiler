@@ -28,13 +28,11 @@ string generatecode(ttnode *t)
 {
 	if(t->identifier == "variable_declaration")
 	{
-		//tcode << "variable_declaration" << endl;
 		vector<string> v = generatevars(t->second);
-		tcode << v.size() << endl;
 		for(int i=0;i<v.size();i++)
 		{
 			mipstable.add_var(symbol(v[i]));
-			tcode << v[i] << endl;
+			tcode << "variable_declaration " << v[i] << endl;
 		}
 		return def;
 	}
@@ -45,14 +43,16 @@ string generatecode(ttnode *t)
 		if(t->third != NULL)
 		{
 			vector<param> v = generatepars(t->second->first);
+			//tcode << v.size() << endl;
 			mipstable.add_var(symbol(t->item,t_int,v));
 			mipstable.add_scope();
 			for(int i=0;i<v.size();i++)
 			{
 				mipstable.add_var(symbol(v[i].name));
+				tcode << "parameter " << v[i].name << endl;
 			}
 			string a = generatecode(t->third);
-			mipstable.remove_scope();
+			//tcode << "function done " << endl;
 		}
 		else
 		{
@@ -64,8 +64,11 @@ string generatecode(ttnode *t)
 				mipstable.add_var(symbol(v[i].name));
 			}
 			string a = generatecode(t->second);
-			mipstable.remove_scope();
+			
 		}
+		mipstable.remove_scope();
+		tcode << "return to caller" << endl;
+		genmips(def,"exit");
 		return def;
 	}
 	if(t->identifier == "main_function")
@@ -191,7 +194,8 @@ string generatecode(ttnode *t)
 	{
 		if(t->item == "op")
 		{
-			string a = generatecode(t->first);
+			//tcode << "return expression" << endl;
+			string a = generatecode(t->second);
 			tcode << "return " << a << endl;
 			genmips(def,"return",a);
 		}
@@ -217,21 +221,22 @@ string generatecode(ttnode *t)
 	}
 	if(t->identifier == "expression")
 	{
+		string b;
 		if(t->item == "=")
 		{
 			string a = generatecode(t->second);
-			string b = generatecode(t->first);
+			b = generatecode(t->first);
 			tcode << b << " = " << a << endl;
 			genmips(def,"+",a,"0",b);
-			string ret = newtemp();
-			tcode << ret << " = " << b << endl;
-			genmips(def,"+",b,"0",ret);
-			return ret;
 		}
 		else
 		{
-			return generatecode(t->first);
+			b = generatecode(t->first);
 		}
+		string ret = newtemp();
+		tcode << ret << " = " << b << endl;
+		genmips(def,"+",b,"0",ret);
+		return ret;
 	}
 	if(t->identifier == "logic_expression")
 	{
@@ -345,13 +350,7 @@ string generatecode(ttnode *t)
 		//evaluate arguments
 		vector<string> v = generateargs(t->first->first);
 		vector<string> pars = mipstable.getparams(t->item);
-		//set arguments
-		for(int i=0;i<v.size();i++)
-		{
-			tcode << "copy " << v[i] << " to " << pars[i] << endl;
-			genmips(def,"copy",v[i],pars[i]);
-		}
-		tcode << "push return address" << endl;
+		/* tcode << "push return address" << endl;
 		genmips(def,"pushreturn");
 		//backup variables
 		vector<string> backvars = mipstable.backup();
@@ -359,9 +358,16 @@ string generatecode(ttnode *t)
 		{
 			tcode << "push " << backvars[i] << endl;
 			genmips(def,"push",backvars[i]);
+		}*/
+		//set arguments
+		for(int i=0;i<v.size();i++)
+		{
+			//tcode << "argument " << v[i] << endl;
+			tcode << "copy " << v[i] << " to " << pars[i] << endl;
+			genmips(def,"copy",v[i],pars[i]);
 		}
 		//call function
-		tcode << "call " << t->item << endl;
+		/*tcode << "call " << t->item << endl;
 		genmips(def,"call",t->item);
 		//restore variables
 		for(int i = backvars.size()-1;i>=0;i--)
@@ -374,8 +380,9 @@ string generatecode(ttnode *t)
 		genmips(def,"popreturn");
 		string ret = newtemp();
 		tcode << "assign return value" << endl;
-		genmips(def,"restorereturn",ret);
-		return ret;
+		genmips(def,"restorereturn",ret); 
+		return ret; */
+		return def;
 	}
 	if(t->identifier == "op1")
 	{

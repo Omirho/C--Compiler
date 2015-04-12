@@ -331,7 +331,6 @@ void yyerror(string s)
 
 int main()
 {
-	freopen("out.txt","w",stdout);
 	bool failure = yyparse();
 	failure |= fail;
 	if(failure) 
@@ -339,9 +338,9 @@ int main()
 	else
 	{
 		cerr << "Success!\n";
+		printtree(root); printtreeold(root, "+-- ");
 		mcode << ".text" << endl;
 		generatecode(root);
 		data();
-		//printtree(root); printtreeold(root, "+-- ");
 	}
 }
