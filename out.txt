@@ -13,236 +13,236 @@ begin [shape=box,style=filled,color=white]
 "4. declaration_list " [label = " declaration_list "];
 "3. declaration_list " -> "4. declaration_list "
 "4. declaration_list " [label = " declaration_list "];
-"5. epsilon " [label = " epsilon "];
-"4. declaration_list " -> "5. epsilon "
+"5. declaration_list " [label = " declaration_list "];
+"4. declaration_list " -> "5. declaration_list "
+"5. declaration_list " [label = " declaration_list "];
+"6. epsilon " [label = " epsilon "];
+"5. declaration_list " -> "6. epsilon "
+"4. declaration_list " [label = " declaration_list "];
+"7. declaration " [label = " declaration "];
+"4. declaration_list " -> "7. declaration "
+"7. declaration " [label = " declaration "];
+"8. variable_declaration " [label = " variable_declaration "];
+"7. declaration " -> "8. variable_declaration "
+"8. variable_declaration " [label = " variable_declaration "];
+"9. type " [label = " type "];
+"8. variable_declaration " -> "9. type "
+"9. type " [label = " type "];
+"10. INT ( int )" [label = " INT ( int )"];
+"9. type " -> "10. INT ( int )"
+"8. variable_declaration " [label = " variable_declaration "];
+"11. variable_list " [label = " variable_list "];
+"8. variable_declaration " -> "11. variable_list "
+"11. variable_list " [label = " variable_list "];
+"12. variable ( i )" [label = " variable ( i )"];
+"11. variable_list " -> "12. variable ( i )"
+"12. variable ( i )" [label = " variable ( i )"];
+"13. IDENTIFIER ( i )" [label = " IDENTIFIER ( i )"];
+"12. variable ( i )" -> "13. IDENTIFIER ( i )"
 "3. declaration_list " [label = " declaration_list "];
-"6. declaration " [label = " declaration "];
-"3. declaration_list " -> "6. declaration "
-"6. declaration " [label = " declaration "];
-"7. variable_declaration " [label = " variable_declaration "];
-"6. declaration " -> "7. variable_declaration "
-"7. variable_declaration " [label = " variable_declaration "];
-"8. type " [label = " type "];
-"7. variable_declaration " -> "8. type "
-"8. type " [label = " type "];
-"9. INT ( int )" [label = " INT ( int )"];
-"8. type " -> "9. INT ( int )"
-"7. variable_declaration " [label = " variable_declaration "];
-"10. variable_list " [label = " variable_list "];
-"7. variable_declaration " -> "10. variable_list "
-"10. variable_list " [label = " variable_list "];
-"11. variable ( i )" [label = " variable ( i )"];
-"10. variable_list " -> "11. variable ( i )"
-"11. variable ( i )" [label = " variable ( i )"];
-"12. IDENTIFIER ( i )" [label = " IDENTIFIER ( i )"];
-"11. variable ( i )" -> "12. IDENTIFIER ( i )"
+"14. declaration " [label = " declaration "];
+"3. declaration_list " -> "14. declaration "
+"14. declaration " [label = " declaration "];
+"15. function_declaration ( fib )" [label = " function_declaration ( fib )"];
+"14. declaration " -> "15. function_declaration ( fib )"
+"15. function_declaration ( fib )" [label = " function_declaration ( fib )"];
+"16. type " [label = " type "];
+"15. function_declaration ( fib )" -> "16. type "
+"16. type " [label = " type "];
+"17. INT ( int )" [label = " INT ( int )"];
+"16. type " -> "17. INT ( int )"
+"15. function_declaration ( fib )" [label = " function_declaration ( fib )"];
+"18. parameters " [label = " parameters "];
+"15. function_declaration ( fib )" -> "18. parameters "
+"18. parameters " [label = " parameters "];
+"19. parameter_list " [label = " parameter_list "];
+"18. parameters " -> "19. parameter_list "
+"19. parameter_list " [label = " parameter_list "];
+"20. parameter_list " [label = " parameter_list "];
+"19. parameter_list " -> "20. parameter_list "
+"20. parameter_list " [label = " parameter_list "];
+"21. parameter " [label = " parameter "];
+"20. parameter_list " -> "21. parameter "
+"21. parameter " [label = " parameter "];
+"22. type " [label = " type "];
+"21. parameter " -> "22. type "
+"22. type " [label = " type "];
+"23. INT ( int )" [label = " INT ( int )"];
+"22. type " -> "23. INT ( int )"
+"21. parameter " [label = " parameter "];
+"24. variable ( x )" [label = " variable ( x )"];
+"21. parameter " -> "24. variable ( x )"
+"24. variable ( x )" [label = " variable ( x )"];
+"25. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
+"24. variable ( x )" -> "25. IDENTIFIER ( x )"
+"19. parameter_list " [label = " parameter_list "];
+"26. parameter " [label = " parameter "];
+"19. parameter_list " -> "26. parameter "
+"26. parameter " [label = " parameter "];
+"27. type " [label = " type "];
+"26. parameter " -> "27. type "
+"27. type " [label = " type "];
+"28. INT ( int )" [label = " INT ( int )"];
+"27. type " -> "28. INT ( int )"
+"26. parameter " [label = " parameter "];
+"29. variable ( y )" [label = " variable ( y )"];
+"26. parameter " -> "29. variable ( y )"
+"29. variable ( y )" [label = " variable ( y )"];
+"30. IDENTIFIER ( y )" [label = " IDENTIFIER ( y )"];
+"29. variable ( y )" -> "30. IDENTIFIER ( y )"
+"15. function_declaration ( fib )" [label = " function_declaration ( fib )"];
+"31. code_block " [label = " code_block "];
+"15. function_declaration ( fib )" -> "31. code_block "
+"31. code_block " [label = " code_block "];
+"32. statement " [label = " statement "];
+"31. code_block " -> "32. statement "
+"32. statement " [label = " statement "];
+"33. return_stat ( op )" [label = " return_stat ( op )"];
+"32. statement " -> "33. return_stat ( op )"
+"33. return_stat ( op )" [label = " return_stat ( op )"];
+"34. RETURN ( return )" [label = " RETURN ( return )"];
+"33. return_stat ( op )" -> "34. RETURN ( return )"
+"33. return_stat ( op )" [label = " return_stat ( op )"];
+"35. expression " [label = " expression "];
+"33. return_stat ( op )" -> "35. expression "
+"35. expression " [label = " expression "];
+"36. logic_expression " [label = " logic_expression "];
+"35. expression " -> "36. logic_expression "
+"36. logic_expression " [label = " logic_expression "];
+"37. and_expression " [label = " and_expression "];
+"36. logic_expression " -> "37. and_expression "
+"37. and_expression " [label = " and_expression "];
+"38. relation_expression " [label = " relation_expression "];
+"37. and_expression " -> "38. relation_expression "
+"38. relation_expression " [label = " relation_expression "];
+"39. simple_expression ( op )" [label = " simple_expression ( op )"];
+"38. relation_expression " -> "39. simple_expression ( op )"
+"39. simple_expression ( op )" [label = " simple_expression ( op )"];
+"40. simple_expression " [label = " simple_expression "];
+"39. simple_expression ( op )" -> "40. simple_expression "
+"40. simple_expression " [label = " simple_expression "];
+"41. mul_expression " [label = " mul_expression "];
+"40. simple_expression " -> "41. mul_expression "
+"41. mul_expression " [label = " mul_expression "];
+"42. unary_expression " [label = " unary_expression "];
+"41. mul_expression " -> "42. unary_expression "
+"42. unary_expression " [label = " unary_expression "];
+"43. climax " [label = " climax "];
+"42. unary_expression " -> "43. climax "
+"43. climax " [label = " climax "];
+"44. variable ( x )" [label = " variable ( x )"];
+"43. climax " -> "44. variable ( x )"
+"44. variable ( x )" [label = " variable ( x )"];
+"45. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
+"44. variable ( x )" -> "45. IDENTIFIER ( x )"
+"39. simple_expression ( op )" [label = " simple_expression ( op )"];
+"46. op1 " [label = " op1 "];
+"39. simple_expression ( op )" -> "46. op1 "
+"46. op1 " [label = " op1 "];
+"47. AD_OP ( + )" [label = " AD_OP ( + )"];
+"46. op1 " -> "47. AD_OP ( + )"
+"39. simple_expression ( op )" [label = " simple_expression ( op )"];
+"48. mul_expression " [label = " mul_expression "];
+"39. simple_expression ( op )" -> "48. mul_expression "
+"48. mul_expression " [label = " mul_expression "];
+"49. unary_expression " [label = " unary_expression "];
+"48. mul_expression " -> "49. unary_expression "
+"49. unary_expression " [label = " unary_expression "];
+"50. climax " [label = " climax "];
+"49. unary_expression " -> "50. climax "
+"50. climax " [label = " climax "];
+"51. variable ( y )" [label = " variable ( y )"];
+"50. climax " -> "51. variable ( y )"
+"51. variable ( y )" [label = " variable ( y )"];
+"52. IDENTIFIER ( y )" [label = " IDENTIFIER ( y )"];
+"51. variable ( y )" -> "52. IDENTIFIER ( y )"
 "2. declaration_list " [label = " declaration_list "];
-"13. declaration " [label = " declaration "];
-"2. declaration_list " -> "13. declaration "
-"13. declaration " [label = " declaration "];
-"14. function_declaration ( fib )" [label = " function_declaration ( fib )"];
-"13. declaration " -> "14. function_declaration ( fib )"
-"14. function_declaration ( fib )" [label = " function_declaration ( fib )"];
-"15. type " [label = " type "];
-"14. function_declaration ( fib )" -> "15. type "
-"15. type " [label = " type "];
-"16. INT ( int )" [label = " INT ( int )"];
-"15. type " -> "16. INT ( int )"
-"14. function_declaration ( fib )" [label = " function_declaration ( fib )"];
-"17. parameters " [label = " parameters "];
-"14. function_declaration ( fib )" -> "17. parameters "
-"17. parameters " [label = " parameters "];
-"18. parameter_list " [label = " parameter_list "];
-"17. parameters " -> "18. parameter_list "
-"18. parameter_list " [label = " parameter_list "];
-"19. parameter " [label = " parameter "];
-"18. parameter_list " -> "19. parameter "
-"19. parameter " [label = " parameter "];
-"20. type " [label = " type "];
-"19. parameter " -> "20. type "
-"20. type " [label = " type "];
-"21. INT ( int )" [label = " INT ( int )"];
-"20. type " -> "21. INT ( int )"
-"19. parameter " [label = " parameter "];
-"22. variable ( x )" [label = " variable ( x )"];
-"19. parameter " -> "22. variable ( x )"
-"22. variable ( x )" [label = " variable ( x )"];
-"23. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
-"22. variable ( x )" -> "23. IDENTIFIER ( x )"
-"14. function_declaration ( fib )" [label = " function_declaration ( fib )"];
-"24. code_block " [label = " code_block "];
-"14. function_declaration ( fib )" -> "24. code_block "
-"24. code_block " [label = " code_block "];
-"25. code_block " [label = " code_block "];
-"24. code_block " -> "25. code_block "
-"25. code_block " [label = " code_block "];
-"26. statement " [label = " statement "];
-"25. code_block " -> "26. statement "
-"26. statement " [label = " statement "];
-"27. condition_stat " [label = " condition_stat "];
-"26. statement " -> "27. condition_stat "
-"27. condition_stat " [label = " condition_stat "];
-"28. expression " [label = " expression "];
-"27. condition_stat " -> "28. expression "
-"28. expression " [label = " expression "];
-"29. logic_expression " [label = " logic_expression "];
-"28. expression " -> "29. logic_expression "
-"29. logic_expression " [label = " logic_expression "];
-"30. and_expression " [label = " and_expression "];
-"29. logic_expression " -> "30. and_expression "
-"30. and_expression " [label = " and_expression "];
-"31. relation_expression ( op )" [label = " relation_expression ( op )"];
-"30. and_expression " -> "31. relation_expression ( op )"
-"31. relation_expression ( op )" [label = " relation_expression ( op )"];
-"32. relation_expression " [label = " relation_expression "];
-"31. relation_expression ( op )" -> "32. relation_expression "
-"32. relation_expression " [label = " relation_expression "];
-"33. simple_expression " [label = " simple_expression "];
-"32. relation_expression " -> "33. simple_expression "
-"33. simple_expression " [label = " simple_expression "];
-"34. mul_expression " [label = " mul_expression "];
-"33. simple_expression " -> "34. mul_expression "
-"34. mul_expression " [label = " mul_expression "];
-"35. unary_expression " [label = " unary_expression "];
-"34. mul_expression " -> "35. unary_expression "
-"35. unary_expression " [label = " unary_expression "];
-"36. climax " [label = " climax "];
-"35. unary_expression " -> "36. climax "
-"36. climax " [label = " climax "];
-"37. variable ( x )" [label = " variable ( x )"];
-"36. climax " -> "37. variable ( x )"
-"37. variable ( x )" [label = " variable ( x )"];
-"38. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
-"37. variable ( x )" -> "38. IDENTIFIER ( x )"
-"31. relation_expression ( op )" [label = " relation_expression ( op )"];
-"39. op3 " [label = " op3 "];
-"31. relation_expression ( op )" -> "39. op3 "
-"39. op3 " [label = " op3 "];
-"40. LE_OP ( <= )" [label = " LE_OP ( <= )"];
-"39. op3 " -> "40. LE_OP ( <= )"
-"31. relation_expression ( op )" [label = " relation_expression ( op )"];
-"41. simple_expression " [label = " simple_expression "];
-"31. relation_expression ( op )" -> "41. simple_expression "
-"41. simple_expression " [label = " simple_expression "];
-"42. mul_expression " [label = " mul_expression "];
-"41. simple_expression " -> "42. mul_expression "
-"42. mul_expression " [label = " mul_expression "];
-"43. unary_expression " [label = " unary_expression "];
-"42. mul_expression " -> "43. unary_expression "
-"43. unary_expression " [label = " unary_expression "];
-"44. climax " [label = " climax "];
-"43. unary_expression " -> "44. climax "
-"44. climax " [label = " climax "];
-"45. constants " [label = " constants "];
-"44. climax " -> "45. constants "
-"45. constants " [label = " constants "];
-"46. INT_CONSTANT ( 2 )" [label = " INT_CONSTANT ( 2 )"];
-"45. constants " -> "46. INT_CONSTANT ( 2 )"
-"27. condition_stat " [label = " condition_stat "];
-"47. code_block " [label = " code_block "];
-"27. condition_stat " -> "47. code_block "
-"47. code_block " [label = " code_block "];
-"48. statement " [label = " statement "];
-"47. code_block " -> "48. statement "
-"48. statement " [label = " statement "];
-"49. return_stat ( op )" [label = " return_stat ( op )"];
-"48. statement " -> "49. return_stat ( op )"
-"49. return_stat ( op )" [label = " return_stat ( op )"];
-"50. RETURN ( return )" [label = " RETURN ( return )"];
-"49. return_stat ( op )" -> "50. RETURN ( return )"
-"49. return_stat ( op )" [label = " return_stat ( op )"];
-"51. expression " [label = " expression "];
-"49. return_stat ( op )" -> "51. expression "
-"51. expression " [label = " expression "];
-"52. logic_expression " [label = " logic_expression "];
-"51. expression " -> "52. logic_expression "
-"52. logic_expression " [label = " logic_expression "];
-"53. and_expression " [label = " and_expression "];
-"52. logic_expression " -> "53. and_expression "
-"53. and_expression " [label = " and_expression "];
-"54. relation_expression " [label = " relation_expression "];
-"53. and_expression " -> "54. relation_expression "
-"54. relation_expression " [label = " relation_expression "];
-"55. simple_expression " [label = " simple_expression "];
-"54. relation_expression " -> "55. simple_expression "
-"55. simple_expression " [label = " simple_expression "];
-"56. mul_expression " [label = " mul_expression "];
-"55. simple_expression " -> "56. mul_expression "
-"56. mul_expression " [label = " mul_expression "];
-"57. unary_expression " [label = " unary_expression "];
-"56. mul_expression " -> "57. unary_expression "
-"57. unary_expression " [label = " unary_expression "];
-"58. climax " [label = " climax "];
-"57. unary_expression " -> "58. climax "
-"58. climax " [label = " climax "];
-"59. variable ( x )" [label = " variable ( x )"];
-"58. climax " -> "59. variable ( x )"
-"59. variable ( x )" [label = " variable ( x )"];
-"60. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
-"59. variable ( x )" -> "60. IDENTIFIER ( x )"
-"24. code_block " [label = " code_block "];
-"61. statement " [label = " statement "];
-"24. code_block " -> "61. statement "
-"61. statement " [label = " statement "];
-"62. return_stat ( op )" [label = " return_stat ( op )"];
-"61. statement " -> "62. return_stat ( op )"
-"62. return_stat ( op )" [label = " return_stat ( op )"];
-"63. RETURN ( return )" [label = " RETURN ( return )"];
-"62. return_stat ( op )" -> "63. RETURN ( return )"
-"62. return_stat ( op )" [label = " return_stat ( op )"];
-"64. expression " [label = " expression "];
-"62. return_stat ( op )" -> "64. expression "
-"64. expression " [label = " expression "];
-"65. logic_expression " [label = " logic_expression "];
-"64. expression " -> "65. logic_expression "
-"65. logic_expression " [label = " logic_expression "];
-"66. and_expression " [label = " and_expression "];
-"65. logic_expression " -> "66. and_expression "
-"66. and_expression " [label = " and_expression "];
-"67. relation_expression " [label = " relation_expression "];
-"66. and_expression " -> "67. relation_expression "
-"67. relation_expression " [label = " relation_expression "];
-"68. simple_expression ( op )" [label = " simple_expression ( op )"];
-"67. relation_expression " -> "68. simple_expression ( op )"
-"68. simple_expression ( op )" [label = " simple_expression ( op )"];
-"69. simple_expression " [label = " simple_expression "];
-"68. simple_expression ( op )" -> "69. simple_expression "
-"69. simple_expression " [label = " simple_expression "];
-"70. mul_expression " [label = " mul_expression "];
-"69. simple_expression " -> "70. mul_expression "
-"70. mul_expression " [label = " mul_expression "];
-"71. unary_expression " [label = " unary_expression "];
-"70. mul_expression " -> "71. unary_expression "
-"71. unary_expression " [label = " unary_expression "];
-"72. climax " [label = " climax "];
-"71. unary_expression " -> "72. climax "
-"72. climax " [label = " climax "];
-"73. call ( fib )" [label = " call ( fib )"];
-"72. climax " -> "73. call ( fib )"
-"73. call ( fib )" [label = " call ( fib )"];
-"74. arguments " [label = " arguments "];
-"73. call ( fib )" -> "74. arguments "
-"74. arguments " [label = " arguments "];
-"75. argument_list " [label = " argument_list "];
-"74. arguments " -> "75. argument_list "
-"75. argument_list " [label = " argument_list "];
-"76. expression " [label = " expression "];
-"75. argument_list " -> "76. expression "
-"76. expression " [label = " expression "];
-"77. logic_expression " [label = " logic_expression "];
-"76. expression " -> "77. logic_expression "
-"77. logic_expression " [label = " logic_expression "];
-"78. and_expression " [label = " and_expression "];
-"77. logic_expression " -> "78. and_expression "
-"78. and_expression " [label = " and_expression "];
-"79. relation_expression " [label = " relation_expression "];
-"78. and_expression " -> "79. relation_expression "
-"79. relation_expression " [label = " relation_expression "];
-"80. simple_expression ( op )" [label = " simple_expression ( op )"];
-"79. relation_expression " -> "80. simple_expression ( op )"
-"80. simple_expression ( op )" [label = " simple_expression ( op )"];
+"53. declaration " [label = " declaration "];
+"2. declaration_list " -> "53. declaration "
+"53. declaration " [label = " declaration "];
+"54. function_declaration ( fib )" [label = " function_declaration ( fib )"];
+"53. declaration " -> "54. function_declaration ( fib )"
+"54. function_declaration ( fib )" [label = " function_declaration ( fib )"];
+"55. type " [label = " type "];
+"54. function_declaration ( fib )" -> "55. type "
+"55. type " [label = " type "];
+"56. INT ( int )" [label = " INT ( int )"];
+"55. type " -> "56. INT ( int )"
+"54. function_declaration ( fib )" [label = " function_declaration ( fib )"];
+"57. parameters " [label = " parameters "];
+"54. function_declaration ( fib )" -> "57. parameters "
+"57. parameters " [label = " parameters "];
+"58. parameter_list " [label = " parameter_list "];
+"57. parameters " -> "58. parameter_list "
+"58. parameter_list " [label = " parameter_list "];
+"59. parameter " [label = " parameter "];
+"58. parameter_list " -> "59. parameter "
+"59. parameter " [label = " parameter "];
+"60. type " [label = " type "];
+"59. parameter " -> "60. type "
+"60. type " [label = " type "];
+"61. INT ( int )" [label = " INT ( int )"];
+"60. type " -> "61. INT ( int )"
+"59. parameter " [label = " parameter "];
+"62. variable ( x )" [label = " variable ( x )"];
+"59. parameter " -> "62. variable ( x )"
+"62. variable ( x )" [label = " variable ( x )"];
+"63. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
+"62. variable ( x )" -> "63. IDENTIFIER ( x )"
+"54. function_declaration ( fib )" [label = " function_declaration ( fib )"];
+"64. code_block " [label = " code_block "];
+"54. function_declaration ( fib )" -> "64. code_block "
+"64. code_block " [label = " code_block "];
+"65. code_block " [label = " code_block "];
+"64. code_block " -> "65. code_block "
+"65. code_block " [label = " code_block "];
+"66. statement " [label = " statement "];
+"65. code_block " -> "66. statement "
+"66. statement " [label = " statement "];
+"67. condition_stat " [label = " condition_stat "];
+"66. statement " -> "67. condition_stat "
+"67. condition_stat " [label = " condition_stat "];
+"68. expression " [label = " expression "];
+"67. condition_stat " -> "68. expression "
+"68. expression " [label = " expression "];
+"69. logic_expression " [label = " logic_expression "];
+"68. expression " -> "69. logic_expression "
+"69. logic_expression " [label = " logic_expression "];
+"70. and_expression " [label = " and_expression "];
+"69. logic_expression " -> "70. and_expression "
+"70. and_expression " [label = " and_expression "];
+"71. relation_expression ( op )" [label = " relation_expression ( op )"];
+"70. and_expression " -> "71. relation_expression ( op )"
+"71. relation_expression ( op )" [label = " relation_expression ( op )"];
+"72. relation_expression " [label = " relation_expression "];
+"71. relation_expression ( op )" -> "72. relation_expression "
+"72. relation_expression " [label = " relation_expression "];
+"73. simple_expression " [label = " simple_expression "];
+"72. relation_expression " -> "73. simple_expression "
+"73. simple_expression " [label = " simple_expression "];
+"74. mul_expression " [label = " mul_expression "];
+"73. simple_expression " -> "74. mul_expression "
+"74. mul_expression " [label = " mul_expression "];
+"75. unary_expression " [label = " unary_expression "];
+"74. mul_expression " -> "75. unary_expression "
+"75. unary_expression " [label = " unary_expression "];
+"76. climax " [label = " climax "];
+"75. unary_expression " -> "76. climax "
+"76. climax " [label = " climax "];
+"77. variable ( x )" [label = " variable ( x )"];
+"76. climax " -> "77. variable ( x )"
+"77. variable ( x )" [label = " variable ( x )"];
+"78. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
+"77. variable ( x )" -> "78. IDENTIFIER ( x )"
+"71. relation_expression ( op )" [label = " relation_expression ( op )"];
+"79. op3 " [label = " op3 "];
+"71. relation_expression ( op )" -> "79. op3 "
+"79. op3 " [label = " op3 "];
+"80. LE_OP ( <= )" [label = " LE_OP ( <= )"];
+"79. op3 " -> "80. LE_OP ( <= )"
+"71. relation_expression ( op )" [label = " relation_expression ( op )"];
 "81. simple_expression " [label = " simple_expression "];
-"80. simple_expression ( op )" -> "81. simple_expression "
+"71. relation_expression ( op )" -> "81. simple_expression "
 "81. simple_expression " [label = " simple_expression "];
 "82. mul_expression " [label = " mul_expression "];
 "81. simple_expression " -> "82. mul_expression "
@@ -253,41 +253,41 @@ begin [shape=box,style=filled,color=white]
 "84. climax " [label = " climax "];
 "83. unary_expression " -> "84. climax "
 "84. climax " [label = " climax "];
-"85. variable ( x )" [label = " variable ( x )"];
-"84. climax " -> "85. variable ( x )"
-"85. variable ( x )" [label = " variable ( x )"];
-"86. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
-"85. variable ( x )" -> "86. IDENTIFIER ( x )"
-"80. simple_expression ( op )" [label = " simple_expression ( op )"];
-"87. op1 " [label = " op1 "];
-"80. simple_expression ( op )" -> "87. op1 "
-"87. op1 " [label = " op1 "];
-"88. SU_OP ( - )" [label = " SU_OP ( - )"];
-"87. op1 " -> "88. SU_OP ( - )"
-"80. simple_expression ( op )" [label = " simple_expression ( op )"];
-"89. mul_expression " [label = " mul_expression "];
-"80. simple_expression ( op )" -> "89. mul_expression "
-"89. mul_expression " [label = " mul_expression "];
-"90. unary_expression " [label = " unary_expression "];
-"89. mul_expression " -> "90. unary_expression "
-"90. unary_expression " [label = " unary_expression "];
-"91. climax " [label = " climax "];
-"90. unary_expression " -> "91. climax "
-"91. climax " [label = " climax "];
-"92. constants " [label = " constants "];
-"91. climax " -> "92. constants "
-"92. constants " [label = " constants "];
-"93. INT_CONSTANT ( 1 )" [label = " INT_CONSTANT ( 1 )"];
-"92. constants " -> "93. INT_CONSTANT ( 1 )"
-"68. simple_expression ( op )" [label = " simple_expression ( op )"];
-"94. op1 " [label = " op1 "];
-"68. simple_expression ( op )" -> "94. op1 "
-"94. op1 " [label = " op1 "];
-"95. AD_OP ( + )" [label = " AD_OP ( + )"];
-"94. op1 " -> "95. AD_OP ( + )"
-"68. simple_expression ( op )" [label = " simple_expression ( op )"];
+"85. constants " [label = " constants "];
+"84. climax " -> "85. constants "
+"85. constants " [label = " constants "];
+"86. INT_CONSTANT ( 2 )" [label = " INT_CONSTANT ( 2 )"];
+"85. constants " -> "86. INT_CONSTANT ( 2 )"
+"67. condition_stat " [label = " condition_stat "];
+"87. code_block " [label = " code_block "];
+"67. condition_stat " -> "87. code_block "
+"87. code_block " [label = " code_block "];
+"88. statement " [label = " statement "];
+"87. code_block " -> "88. statement "
+"88. statement " [label = " statement "];
+"89. return_stat ( op )" [label = " return_stat ( op )"];
+"88. statement " -> "89. return_stat ( op )"
+"89. return_stat ( op )" [label = " return_stat ( op )"];
+"90. RETURN ( return )" [label = " RETURN ( return )"];
+"89. return_stat ( op )" -> "90. RETURN ( return )"
+"89. return_stat ( op )" [label = " return_stat ( op )"];
+"91. expression " [label = " expression "];
+"89. return_stat ( op )" -> "91. expression "
+"91. expression " [label = " expression "];
+"92. logic_expression " [label = " logic_expression "];
+"91. expression " -> "92. logic_expression "
+"92. logic_expression " [label = " logic_expression "];
+"93. and_expression " [label = " and_expression "];
+"92. logic_expression " -> "93. and_expression "
+"93. and_expression " [label = " and_expression "];
+"94. relation_expression " [label = " relation_expression "];
+"93. and_expression " -> "94. relation_expression "
+"94. relation_expression " [label = " relation_expression "];
+"95. simple_expression " [label = " simple_expression "];
+"94. relation_expression " -> "95. simple_expression "
+"95. simple_expression " [label = " simple_expression "];
 "96. mul_expression " [label = " mul_expression "];
-"68. simple_expression ( op )" -> "96. mul_expression "
+"95. simple_expression " -> "96. mul_expression "
 "96. mul_expression " [label = " mul_expression "];
 "97. unary_expression " [label = " unary_expression "];
 "96. mul_expression " -> "97. unary_expression "
@@ -295,176 +295,176 @@ begin [shape=box,style=filled,color=white]
 "98. climax " [label = " climax "];
 "97. unary_expression " -> "98. climax "
 "98. climax " [label = " climax "];
-"99. call ( fib )" [label = " call ( fib )"];
-"98. climax " -> "99. call ( fib )"
-"99. call ( fib )" [label = " call ( fib )"];
-"100. arguments " [label = " arguments "];
-"99. call ( fib )" -> "100. arguments "
-"100. arguments " [label = " arguments "];
-"101. argument_list " [label = " argument_list "];
-"100. arguments " -> "101. argument_list "
-"101. argument_list " [label = " argument_list "];
-"102. expression " [label = " expression "];
-"101. argument_list " -> "102. expression "
-"102. expression " [label = " expression "];
-"103. logic_expression " [label = " logic_expression "];
-"102. expression " -> "103. logic_expression "
-"103. logic_expression " [label = " logic_expression "];
-"104. and_expression " [label = " and_expression "];
-"103. logic_expression " -> "104. and_expression "
-"104. and_expression " [label = " and_expression "];
-"105. relation_expression " [label = " relation_expression "];
-"104. and_expression " -> "105. relation_expression "
-"105. relation_expression " [label = " relation_expression "];
-"106. simple_expression ( op )" [label = " simple_expression ( op )"];
-"105. relation_expression " -> "106. simple_expression ( op )"
-"106. simple_expression ( op )" [label = " simple_expression ( op )"];
-"107. simple_expression " [label = " simple_expression "];
-"106. simple_expression ( op )" -> "107. simple_expression "
-"107. simple_expression " [label = " simple_expression "];
-"108. mul_expression " [label = " mul_expression "];
-"107. simple_expression " -> "108. mul_expression "
-"108. mul_expression " [label = " mul_expression "];
-"109. unary_expression " [label = " unary_expression "];
-"108. mul_expression " -> "109. unary_expression "
-"109. unary_expression " [label = " unary_expression "];
-"110. climax " [label = " climax "];
-"109. unary_expression " -> "110. climax "
-"110. climax " [label = " climax "];
-"111. variable ( x )" [label = " variable ( x )"];
-"110. climax " -> "111. variable ( x )"
-"111. variable ( x )" [label = " variable ( x )"];
-"112. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
-"111. variable ( x )" -> "112. IDENTIFIER ( x )"
-"106. simple_expression ( op )" [label = " simple_expression ( op )"];
-"113. op1 " [label = " op1 "];
-"106. simple_expression ( op )" -> "113. op1 "
-"113. op1 " [label = " op1 "];
-"114. SU_OP ( - )" [label = " SU_OP ( - )"];
-"113. op1 " -> "114. SU_OP ( - )"
-"106. simple_expression ( op )" [label = " simple_expression ( op )"];
-"115. mul_expression " [label = " mul_expression "];
-"106. simple_expression ( op )" -> "115. mul_expression "
-"115. mul_expression " [label = " mul_expression "];
-"116. unary_expression " [label = " unary_expression "];
-"115. mul_expression " -> "116. unary_expression "
-"116. unary_expression " [label = " unary_expression "];
-"117. climax " [label = " climax "];
-"116. unary_expression " -> "117. climax "
-"117. climax " [label = " climax "];
-"118. constants " [label = " constants "];
-"117. climax " -> "118. constants "
-"118. constants " [label = " constants "];
-"119. INT_CONSTANT ( 2 )" [label = " INT_CONSTANT ( 2 )"];
-"118. constants " -> "119. INT_CONSTANT ( 2 )"
-"1. program " [label = " program "];
-"120. main_function " [label = " main_function "];
-"1. program " -> "120. main_function "
-"120. main_function " [label = " main_function "];
-"121. code_block " [label = " code_block "];
-"120. main_function " -> "121. code_block "
-"121. code_block " [label = " code_block "];
-"122. code_block " [label = " code_block "];
-"121. code_block " -> "122. code_block "
-"122. code_block " [label = " code_block "];
-"123. code_block " [label = " code_block "];
-"122. code_block " -> "123. code_block "
-"123. code_block " [label = " code_block "];
-"124. code_block " [label = " code_block "];
-"123. code_block " -> "124. code_block "
-"124. code_block " [label = " code_block "];
-"125. statement " [label = " statement "];
-"124. code_block " -> "125. statement "
-"125. statement " [label = " statement "];
-"126. variable_declaration " [label = " variable_declaration "];
-"125. statement " -> "126. variable_declaration "
-"126. variable_declaration " [label = " variable_declaration "];
-"127. type " [label = " type "];
-"126. variable_declaration " -> "127. type "
-"127. type " [label = " type "];
-"128. INT ( int )" [label = " INT ( int )"];
-"127. type " -> "128. INT ( int )"
-"126. variable_declaration " [label = " variable_declaration "];
-"129. variable_list " [label = " variable_list "];
-"126. variable_declaration " -> "129. variable_list "
-"129. variable_list " [label = " variable_list "];
-"130. variable ( z )" [label = " variable ( z )"];
-"129. variable_list " -> "130. variable ( z )"
-"130. variable ( z )" [label = " variable ( z )"];
-"131. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
-"130. variable ( z )" -> "131. IDENTIFIER ( z )"
-"123. code_block " [label = " code_block "];
-"132. statement " [label = " statement "];
-"123. code_block " -> "132. statement "
-"132. statement " [label = " statement "];
-"133. expression ( = )" [label = " expression ( = )"];
-"132. statement " -> "133. expression ( = )"
-"133. expression ( = )" [label = " expression ( = )"];
-"134. variable ( z )" [label = " variable ( z )"];
-"133. expression ( = )" -> "134. variable ( z )"
-"134. variable ( z )" [label = " variable ( z )"];
-"135. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
-"134. variable ( z )" -> "135. IDENTIFIER ( z )"
-"133. expression ( = )" [label = " expression ( = )"];
-"136. expression " [label = " expression "];
-"133. expression ( = )" -> "136. expression "
-"136. expression " [label = " expression "];
-"137. logic_expression " [label = " logic_expression "];
-"136. expression " -> "137. logic_expression "
-"137. logic_expression " [label = " logic_expression "];
-"138. and_expression " [label = " and_expression "];
-"137. logic_expression " -> "138. and_expression "
-"138. and_expression " [label = " and_expression "];
-"139. relation_expression " [label = " relation_expression "];
-"138. and_expression " -> "139. relation_expression "
-"139. relation_expression " [label = " relation_expression "];
-"140. simple_expression " [label = " simple_expression "];
-"139. relation_expression " -> "140. simple_expression "
-"140. simple_expression " [label = " simple_expression "];
-"141. mul_expression " [label = " mul_expression "];
-"140. simple_expression " -> "141. mul_expression "
-"141. mul_expression " [label = " mul_expression "];
-"142. unary_expression " [label = " unary_expression "];
-"141. mul_expression " -> "142. unary_expression "
-"142. unary_expression " [label = " unary_expression "];
-"143. climax " [label = " climax "];
-"142. unary_expression " -> "143. climax "
-"143. climax " [label = " climax "];
-"144. constants " [label = " constants "];
-"143. climax " -> "144. constants "
-"144. constants " [label = " constants "];
-"145. INT_CONSTANT ( 5 )" [label = " INT_CONSTANT ( 5 )"];
-"144. constants " -> "145. INT_CONSTANT ( 5 )"
-"122. code_block " [label = " code_block "];
-"146. statement " [label = " statement "];
-"122. code_block " -> "146. statement "
-"146. statement " [label = " statement "];
-"147. expression ( = )" [label = " expression ( = )"];
-"146. statement " -> "147. expression ( = )"
-"147. expression ( = )" [label = " expression ( = )"];
-"148. variable ( z )" [label = " variable ( z )"];
-"147. expression ( = )" -> "148. variable ( z )"
-"148. variable ( z )" [label = " variable ( z )"];
-"149. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
-"148. variable ( z )" -> "149. IDENTIFIER ( z )"
-"147. expression ( = )" [label = " expression ( = )"];
-"150. expression " [label = " expression "];
-"147. expression ( = )" -> "150. expression "
-"150. expression " [label = " expression "];
-"151. logic_expression " [label = " logic_expression "];
-"150. expression " -> "151. logic_expression "
-"151. logic_expression " [label = " logic_expression "];
-"152. and_expression " [label = " and_expression "];
-"151. logic_expression " -> "152. and_expression "
-"152. and_expression " [label = " and_expression "];
-"153. relation_expression " [label = " relation_expression "];
-"152. and_expression " -> "153. relation_expression "
-"153. relation_expression " [label = " relation_expression "];
-"154. simple_expression " [label = " simple_expression "];
-"153. relation_expression " -> "154. simple_expression "
-"154. simple_expression " [label = " simple_expression "];
+"99. variable ( x )" [label = " variable ( x )"];
+"98. climax " -> "99. variable ( x )"
+"99. variable ( x )" [label = " variable ( x )"];
+"100. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
+"99. variable ( x )" -> "100. IDENTIFIER ( x )"
+"64. code_block " [label = " code_block "];
+"101. statement " [label = " statement "];
+"64. code_block " -> "101. statement "
+"101. statement " [label = " statement "];
+"102. return_stat ( op )" [label = " return_stat ( op )"];
+"101. statement " -> "102. return_stat ( op )"
+"102. return_stat ( op )" [label = " return_stat ( op )"];
+"103. RETURN ( return )" [label = " RETURN ( return )"];
+"102. return_stat ( op )" -> "103. RETURN ( return )"
+"102. return_stat ( op )" [label = " return_stat ( op )"];
+"104. expression " [label = " expression "];
+"102. return_stat ( op )" -> "104. expression "
+"104. expression " [label = " expression "];
+"105. logic_expression " [label = " logic_expression "];
+"104. expression " -> "105. logic_expression "
+"105. logic_expression " [label = " logic_expression "];
+"106. and_expression " [label = " and_expression "];
+"105. logic_expression " -> "106. and_expression "
+"106. and_expression " [label = " and_expression "];
+"107. relation_expression " [label = " relation_expression "];
+"106. and_expression " -> "107. relation_expression "
+"107. relation_expression " [label = " relation_expression "];
+"108. simple_expression ( op )" [label = " simple_expression ( op )"];
+"107. relation_expression " -> "108. simple_expression ( op )"
+"108. simple_expression ( op )" [label = " simple_expression ( op )"];
+"109. simple_expression " [label = " simple_expression "];
+"108. simple_expression ( op )" -> "109. simple_expression "
+"109. simple_expression " [label = " simple_expression "];
+"110. mul_expression " [label = " mul_expression "];
+"109. simple_expression " -> "110. mul_expression "
+"110. mul_expression " [label = " mul_expression "];
+"111. unary_expression " [label = " unary_expression "];
+"110. mul_expression " -> "111. unary_expression "
+"111. unary_expression " [label = " unary_expression "];
+"112. climax " [label = " climax "];
+"111. unary_expression " -> "112. climax "
+"112. climax " [label = " climax "];
+"113. call ( fib )" [label = " call ( fib )"];
+"112. climax " -> "113. call ( fib )"
+"113. call ( fib )" [label = " call ( fib )"];
+"114. arguments " [label = " arguments "];
+"113. call ( fib )" -> "114. arguments "
+"114. arguments " [label = " arguments "];
+"115. argument_list " [label = " argument_list "];
+"114. arguments " -> "115. argument_list "
+"115. argument_list " [label = " argument_list "];
+"116. expression " [label = " expression "];
+"115. argument_list " -> "116. expression "
+"116. expression " [label = " expression "];
+"117. logic_expression " [label = " logic_expression "];
+"116. expression " -> "117. logic_expression "
+"117. logic_expression " [label = " logic_expression "];
+"118. and_expression " [label = " and_expression "];
+"117. logic_expression " -> "118. and_expression "
+"118. and_expression " [label = " and_expression "];
+"119. relation_expression " [label = " relation_expression "];
+"118. and_expression " -> "119. relation_expression "
+"119. relation_expression " [label = " relation_expression "];
+"120. simple_expression ( op )" [label = " simple_expression ( op )"];
+"119. relation_expression " -> "120. simple_expression ( op )"
+"120. simple_expression ( op )" [label = " simple_expression ( op )"];
+"121. simple_expression " [label = " simple_expression "];
+"120. simple_expression ( op )" -> "121. simple_expression "
+"121. simple_expression " [label = " simple_expression "];
+"122. mul_expression " [label = " mul_expression "];
+"121. simple_expression " -> "122. mul_expression "
+"122. mul_expression " [label = " mul_expression "];
+"123. unary_expression " [label = " unary_expression "];
+"122. mul_expression " -> "123. unary_expression "
+"123. unary_expression " [label = " unary_expression "];
+"124. climax " [label = " climax "];
+"123. unary_expression " -> "124. climax "
+"124. climax " [label = " climax "];
+"125. variable ( x )" [label = " variable ( x )"];
+"124. climax " -> "125. variable ( x )"
+"125. variable ( x )" [label = " variable ( x )"];
+"126. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
+"125. variable ( x )" -> "126. IDENTIFIER ( x )"
+"120. simple_expression ( op )" [label = " simple_expression ( op )"];
+"127. op1 " [label = " op1 "];
+"120. simple_expression ( op )" -> "127. op1 "
+"127. op1 " [label = " op1 "];
+"128. SU_OP ( - )" [label = " SU_OP ( - )"];
+"127. op1 " -> "128. SU_OP ( - )"
+"120. simple_expression ( op )" [label = " simple_expression ( op )"];
+"129. mul_expression " [label = " mul_expression "];
+"120. simple_expression ( op )" -> "129. mul_expression "
+"129. mul_expression " [label = " mul_expression "];
+"130. unary_expression " [label = " unary_expression "];
+"129. mul_expression " -> "130. unary_expression "
+"130. unary_expression " [label = " unary_expression "];
+"131. climax " [label = " climax "];
+"130. unary_expression " -> "131. climax "
+"131. climax " [label = " climax "];
+"132. constants " [label = " constants "];
+"131. climax " -> "132. constants "
+"132. constants " [label = " constants "];
+"133. INT_CONSTANT ( 1 )" [label = " INT_CONSTANT ( 1 )"];
+"132. constants " -> "133. INT_CONSTANT ( 1 )"
+"108. simple_expression ( op )" [label = " simple_expression ( op )"];
+"134. op1 " [label = " op1 "];
+"108. simple_expression ( op )" -> "134. op1 "
+"134. op1 " [label = " op1 "];
+"135. AD_OP ( + )" [label = " AD_OP ( + )"];
+"134. op1 " -> "135. AD_OP ( + )"
+"108. simple_expression ( op )" [label = " simple_expression ( op )"];
+"136. mul_expression " [label = " mul_expression "];
+"108. simple_expression ( op )" -> "136. mul_expression "
+"136. mul_expression " [label = " mul_expression "];
+"137. unary_expression " [label = " unary_expression "];
+"136. mul_expression " -> "137. unary_expression "
+"137. unary_expression " [label = " unary_expression "];
+"138. climax " [label = " climax "];
+"137. unary_expression " -> "138. climax "
+"138. climax " [label = " climax "];
+"139. call ( fib )" [label = " call ( fib )"];
+"138. climax " -> "139. call ( fib )"
+"139. call ( fib )" [label = " call ( fib )"];
+"140. arguments " [label = " arguments "];
+"139. call ( fib )" -> "140. arguments "
+"140. arguments " [label = " arguments "];
+"141. argument_list " [label = " argument_list "];
+"140. arguments " -> "141. argument_list "
+"141. argument_list " [label = " argument_list "];
+"142. expression " [label = " expression "];
+"141. argument_list " -> "142. expression "
+"142. expression " [label = " expression "];
+"143. logic_expression " [label = " logic_expression "];
+"142. expression " -> "143. logic_expression "
+"143. logic_expression " [label = " logic_expression "];
+"144. and_expression " [label = " and_expression "];
+"143. logic_expression " -> "144. and_expression "
+"144. and_expression " [label = " and_expression "];
+"145. relation_expression " [label = " relation_expression "];
+"144. and_expression " -> "145. relation_expression "
+"145. relation_expression " [label = " relation_expression "];
+"146. simple_expression ( op )" [label = " simple_expression ( op )"];
+"145. relation_expression " -> "146. simple_expression ( op )"
+"146. simple_expression ( op )" [label = " simple_expression ( op )"];
+"147. simple_expression " [label = " simple_expression "];
+"146. simple_expression ( op )" -> "147. simple_expression "
+"147. simple_expression " [label = " simple_expression "];
+"148. mul_expression " [label = " mul_expression "];
+"147. simple_expression " -> "148. mul_expression "
+"148. mul_expression " [label = " mul_expression "];
+"149. unary_expression " [label = " unary_expression "];
+"148. mul_expression " -> "149. unary_expression "
+"149. unary_expression " [label = " unary_expression "];
+"150. climax " [label = " climax "];
+"149. unary_expression " -> "150. climax "
+"150. climax " [label = " climax "];
+"151. variable ( x )" [label = " variable ( x )"];
+"150. climax " -> "151. variable ( x )"
+"151. variable ( x )" [label = " variable ( x )"];
+"152. IDENTIFIER ( x )" [label = " IDENTIFIER ( x )"];
+"151. variable ( x )" -> "152. IDENTIFIER ( x )"
+"146. simple_expression ( op )" [label = " simple_expression ( op )"];
+"153. op1 " [label = " op1 "];
+"146. simple_expression ( op )" -> "153. op1 "
+"153. op1 " [label = " op1 "];
+"154. SU_OP ( - )" [label = " SU_OP ( - )"];
+"153. op1 " -> "154. SU_OP ( - )"
+"146. simple_expression ( op )" [label = " simple_expression ( op )"];
 "155. mul_expression " [label = " mul_expression "];
-"154. simple_expression " -> "155. mul_expression "
+"146. simple_expression ( op )" -> "155. mul_expression "
 "155. mul_expression " [label = " mul_expression "];
 "156. unary_expression " [label = " unary_expression "];
 "155. mul_expression " -> "156. unary_expression "
@@ -472,78 +472,348 @@ begin [shape=box,style=filled,color=white]
 "157. climax " [label = " climax "];
 "156. unary_expression " -> "157. climax "
 "157. climax " [label = " climax "];
-"158. call ( fib )" [label = " call ( fib )"];
-"157. climax " -> "158. call ( fib )"
-"158. call ( fib )" [label = " call ( fib )"];
-"159. arguments " [label = " arguments "];
-"158. call ( fib )" -> "159. arguments "
-"159. arguments " [label = " arguments "];
-"160. argument_list " [label = " argument_list "];
-"159. arguments " -> "160. argument_list "
-"160. argument_list " [label = " argument_list "];
-"161. expression " [label = " expression "];
-"160. argument_list " -> "161. expression "
-"161. expression " [label = " expression "];
-"162. logic_expression " [label = " logic_expression "];
-"161. expression " -> "162. logic_expression "
-"162. logic_expression " [label = " logic_expression "];
-"163. and_expression " [label = " and_expression "];
-"162. logic_expression " -> "163. and_expression "
-"163. and_expression " [label = " and_expression "];
-"164. relation_expression " [label = " relation_expression "];
-"163. and_expression " -> "164. relation_expression "
-"164. relation_expression " [label = " relation_expression "];
-"165. simple_expression " [label = " simple_expression "];
-"164. relation_expression " -> "165. simple_expression "
-"165. simple_expression " [label = " simple_expression "];
-"166. mul_expression " [label = " mul_expression "];
-"165. simple_expression " -> "166. mul_expression "
-"166. mul_expression " [label = " mul_expression "];
-"167. unary_expression " [label = " unary_expression "];
-"166. mul_expression " -> "167. unary_expression "
-"167. unary_expression " [label = " unary_expression "];
-"168. climax " [label = " climax "];
-"167. unary_expression " -> "168. climax "
-"168. climax " [label = " climax "];
-"169. constants " [label = " constants "];
-"168. climax " -> "169. constants "
-"169. constants " [label = " constants "];
-"170. INT_CONSTANT ( 10 )" [label = " INT_CONSTANT ( 10 )"];
-"169. constants " -> "170. INT_CONSTANT ( 10 )"
-"121. code_block " [label = " code_block "];
-"171. statement " [label = " statement "];
-"121. code_block " -> "171. statement "
-"171. statement " [label = " statement "];
-"172. write ( put )" [label = " write ( put )"];
-"171. statement " -> "172. write ( put )"
-"172. write ( put )" [label = " write ( put )"];
-"173. expression " [label = " expression "];
-"172. write ( put )" -> "173. expression "
-"173. expression " [label = " expression "];
-"174. logic_expression " [label = " logic_expression "];
-"173. expression " -> "174. logic_expression "
-"174. logic_expression " [label = " logic_expression "];
-"175. and_expression " [label = " and_expression "];
-"174. logic_expression " -> "175. and_expression "
-"175. and_expression " [label = " and_expression "];
-"176. relation_expression " [label = " relation_expression "];
-"175. and_expression " -> "176. relation_expression "
-"176. relation_expression " [label = " relation_expression "];
-"177. simple_expression " [label = " simple_expression "];
-"176. relation_expression " -> "177. simple_expression "
-"177. simple_expression " [label = " simple_expression "];
-"178. mul_expression " [label = " mul_expression "];
-"177. simple_expression " -> "178. mul_expression "
-"178. mul_expression " [label = " mul_expression "];
-"179. unary_expression " [label = " unary_expression "];
-"178. mul_expression " -> "179. unary_expression "
-"179. unary_expression " [label = " unary_expression "];
-"180. climax " [label = " climax "];
-"179. unary_expression " -> "180. climax "
-"180. climax " [label = " climax "];
-"181. variable ( z )" [label = " variable ( z )"];
-"180. climax " -> "181. variable ( z )"
-"181. variable ( z )" [label = " variable ( z )"];
-"182. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
-"181. variable ( z )" -> "182. IDENTIFIER ( z )"
+"158. constants " [label = " constants "];
+"157. climax " -> "158. constants "
+"158. constants " [label = " constants "];
+"159. INT_CONSTANT ( 2 )" [label = " INT_CONSTANT ( 2 )"];
+"158. constants " -> "159. INT_CONSTANT ( 2 )"
+"1. program " [label = " program "];
+"160. main_function " [label = " main_function "];
+"1. program " -> "160. main_function "
+"160. main_function " [label = " main_function "];
+"161. code_block " [label = " code_block "];
+"160. main_function " -> "161. code_block "
+"161. code_block " [label = " code_block "];
+"162. code_block " [label = " code_block "];
+"161. code_block " -> "162. code_block "
+"162. code_block " [label = " code_block "];
+"163. code_block " [label = " code_block "];
+"162. code_block " -> "163. code_block "
+"163. code_block " [label = " code_block "];
+"164. code_block " [label = " code_block "];
+"163. code_block " -> "164. code_block "
+"164. code_block " [label = " code_block "];
+"165. code_block " [label = " code_block "];
+"164. code_block " -> "165. code_block "
+"165. code_block " [label = " code_block "];
+"166. code_block " [label = " code_block "];
+"165. code_block " -> "166. code_block "
+"166. code_block " [label = " code_block "];
+"167. statement " [label = " statement "];
+"166. code_block " -> "167. statement "
+"167. statement " [label = " statement "];
+"168. variable_declaration " [label = " variable_declaration "];
+"167. statement " -> "168. variable_declaration "
+"168. variable_declaration " [label = " variable_declaration "];
+"169. type " [label = " type "];
+"168. variable_declaration " -> "169. type "
+"169. type " [label = " type "];
+"170. INT ( int )" [label = " INT ( int )"];
+"169. type " -> "170. INT ( int )"
+"168. variable_declaration " [label = " variable_declaration "];
+"171. variable_list " [label = " variable_list "];
+"168. variable_declaration " -> "171. variable_list "
+"171. variable_list " [label = " variable_list "];
+"172. variable ( z )" [label = " variable ( z )"];
+"171. variable_list " -> "172. variable ( z )"
+"172. variable ( z )" [label = " variable ( z )"];
+"173. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
+"172. variable ( z )" -> "173. IDENTIFIER ( z )"
+"165. code_block " [label = " code_block "];
+"174. statement " [label = " statement "];
+"165. code_block " -> "174. statement "
+"174. statement " [label = " statement "];
+"175. expression ( = )" [label = " expression ( = )"];
+"174. statement " -> "175. expression ( = )"
+"175. expression ( = )" [label = " expression ( = )"];
+"176. variable ( z )" [label = " variable ( z )"];
+"175. expression ( = )" -> "176. variable ( z )"
+"176. variable ( z )" [label = " variable ( z )"];
+"177. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
+"176. variable ( z )" -> "177. IDENTIFIER ( z )"
+"175. expression ( = )" [label = " expression ( = )"];
+"178. expression " [label = " expression "];
+"175. expression ( = )" -> "178. expression "
+"178. expression " [label = " expression "];
+"179. logic_expression " [label = " logic_expression "];
+"178. expression " -> "179. logic_expression "
+"179. logic_expression " [label = " logic_expression "];
+"180. and_expression " [label = " and_expression "];
+"179. logic_expression " -> "180. and_expression "
+"180. and_expression " [label = " and_expression "];
+"181. relation_expression " [label = " relation_expression "];
+"180. and_expression " -> "181. relation_expression "
+"181. relation_expression " [label = " relation_expression "];
+"182. simple_expression " [label = " simple_expression "];
+"181. relation_expression " -> "182. simple_expression "
+"182. simple_expression " [label = " simple_expression "];
+"183. mul_expression " [label = " mul_expression "];
+"182. simple_expression " -> "183. mul_expression "
+"183. mul_expression " [label = " mul_expression "];
+"184. unary_expression " [label = " unary_expression "];
+"183. mul_expression " -> "184. unary_expression "
+"184. unary_expression " [label = " unary_expression "];
+"185. climax " [label = " climax "];
+"184. unary_expression " -> "185. climax "
+"185. climax " [label = " climax "];
+"186. constants " [label = " constants "];
+"185. climax " -> "186. constants "
+"186. constants " [label = " constants "];
+"187. INT_CONSTANT ( 5 )" [label = " INT_CONSTANT ( 5 )"];
+"186. constants " -> "187. INT_CONSTANT ( 5 )"
+"164. code_block " [label = " code_block "];
+"188. statement " [label = " statement "];
+"164. code_block " -> "188. statement "
+"188. statement " [label = " statement "];
+"189. expression ( = )" [label = " expression ( = )"];
+"188. statement " -> "189. expression ( = )"
+"189. expression ( = )" [label = " expression ( = )"];
+"190. variable ( z )" [label = " variable ( z )"];
+"189. expression ( = )" -> "190. variable ( z )"
+"190. variable ( z )" [label = " variable ( z )"];
+"191. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
+"190. variable ( z )" -> "191. IDENTIFIER ( z )"
+"189. expression ( = )" [label = " expression ( = )"];
+"192. expression " [label = " expression "];
+"189. expression ( = )" -> "192. expression "
+"192. expression " [label = " expression "];
+"193. logic_expression " [label = " logic_expression "];
+"192. expression " -> "193. logic_expression "
+"193. logic_expression " [label = " logic_expression "];
+"194. and_expression " [label = " and_expression "];
+"193. logic_expression " -> "194. and_expression "
+"194. and_expression " [label = " and_expression "];
+"195. relation_expression " [label = " relation_expression "];
+"194. and_expression " -> "195. relation_expression "
+"195. relation_expression " [label = " relation_expression "];
+"196. simple_expression " [label = " simple_expression "];
+"195. relation_expression " -> "196. simple_expression "
+"196. simple_expression " [label = " simple_expression "];
+"197. mul_expression " [label = " mul_expression "];
+"196. simple_expression " -> "197. mul_expression "
+"197. mul_expression " [label = " mul_expression "];
+"198. unary_expression " [label = " unary_expression "];
+"197. mul_expression " -> "198. unary_expression "
+"198. unary_expression " [label = " unary_expression "];
+"199. climax " [label = " climax "];
+"198. unary_expression " -> "199. climax "
+"199. climax " [label = " climax "];
+"200. call ( fib )" [label = " call ( fib )"];
+"199. climax " -> "200. call ( fib )"
+"200. call ( fib )" [label = " call ( fib )"];
+"201. arguments " [label = " arguments "];
+"200. call ( fib )" -> "201. arguments "
+"201. arguments " [label = " arguments "];
+"202. argument_list " [label = " argument_list "];
+"201. arguments " -> "202. argument_list "
+"202. argument_list " [label = " argument_list "];
+"203. expression " [label = " expression "];
+"202. argument_list " -> "203. expression "
+"203. expression " [label = " expression "];
+"204. logic_expression " [label = " logic_expression "];
+"203. expression " -> "204. logic_expression "
+"204. logic_expression " [label = " logic_expression "];
+"205. and_expression " [label = " and_expression "];
+"204. logic_expression " -> "205. and_expression "
+"205. and_expression " [label = " and_expression "];
+"206. relation_expression " [label = " relation_expression "];
+"205. and_expression " -> "206. relation_expression "
+"206. relation_expression " [label = " relation_expression "];
+"207. simple_expression " [label = " simple_expression "];
+"206. relation_expression " -> "207. simple_expression "
+"207. simple_expression " [label = " simple_expression "];
+"208. mul_expression " [label = " mul_expression "];
+"207. simple_expression " -> "208. mul_expression "
+"208. mul_expression " [label = " mul_expression "];
+"209. unary_expression " [label = " unary_expression "];
+"208. mul_expression " -> "209. unary_expression "
+"209. unary_expression " [label = " unary_expression "];
+"210. climax " [label = " climax "];
+"209. unary_expression " -> "210. climax "
+"210. climax " [label = " climax "];
+"211. constants " [label = " constants "];
+"210. climax " -> "211. constants "
+"211. constants " [label = " constants "];
+"212. INT_CONSTANT ( 10 )" [label = " INT_CONSTANT ( 10 )"];
+"211. constants " -> "212. INT_CONSTANT ( 10 )"
+"163. code_block " [label = " code_block "];
+"213. statement " [label = " statement "];
+"163. code_block " -> "213. statement "
+"213. statement " [label = " statement "];
+"214. write ( put )" [label = " write ( put )"];
+"213. statement " -> "214. write ( put )"
+"214. write ( put )" [label = " write ( put )"];
+"215. expression " [label = " expression "];
+"214. write ( put )" -> "215. expression "
+"215. expression " [label = " expression "];
+"216. logic_expression " [label = " logic_expression "];
+"215. expression " -> "216. logic_expression "
+"216. logic_expression " [label = " logic_expression "];
+"217. and_expression " [label = " and_expression "];
+"216. logic_expression " -> "217. and_expression "
+"217. and_expression " [label = " and_expression "];
+"218. relation_expression " [label = " relation_expression "];
+"217. and_expression " -> "218. relation_expression "
+"218. relation_expression " [label = " relation_expression "];
+"219. simple_expression " [label = " simple_expression "];
+"218. relation_expression " -> "219. simple_expression "
+"219. simple_expression " [label = " simple_expression "];
+"220. mul_expression " [label = " mul_expression "];
+"219. simple_expression " -> "220. mul_expression "
+"220. mul_expression " [label = " mul_expression "];
+"221. unary_expression " [label = " unary_expression "];
+"220. mul_expression " -> "221. unary_expression "
+"221. unary_expression " [label = " unary_expression "];
+"222. climax " [label = " climax "];
+"221. unary_expression " -> "222. climax "
+"222. climax " [label = " climax "];
+"223. variable ( z )" [label = " variable ( z )"];
+"222. climax " -> "223. variable ( z )"
+"223. variable ( z )" [label = " variable ( z )"];
+"224. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
+"223. variable ( z )" -> "224. IDENTIFIER ( z )"
+"162. code_block " [label = " code_block "];
+"225. statement " [label = " statement "];
+"162. code_block " -> "225. statement "
+"225. statement " [label = " statement "];
+"226. expression ( = )" [label = " expression ( = )"];
+"225. statement " -> "226. expression ( = )"
+"226. expression ( = )" [label = " expression ( = )"];
+"227. variable ( z )" [label = " variable ( z )"];
+"226. expression ( = )" -> "227. variable ( z )"
+"227. variable ( z )" [label = " variable ( z )"];
+"228. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
+"227. variable ( z )" -> "228. IDENTIFIER ( z )"
+"226. expression ( = )" [label = " expression ( = )"];
+"229. expression " [label = " expression "];
+"226. expression ( = )" -> "229. expression "
+"229. expression " [label = " expression "];
+"230. logic_expression " [label = " logic_expression "];
+"229. expression " -> "230. logic_expression "
+"230. logic_expression " [label = " logic_expression "];
+"231. and_expression " [label = " and_expression "];
+"230. logic_expression " -> "231. and_expression "
+"231. and_expression " [label = " and_expression "];
+"232. relation_expression " [label = " relation_expression "];
+"231. and_expression " -> "232. relation_expression "
+"232. relation_expression " [label = " relation_expression "];
+"233. simple_expression " [label = " simple_expression "];
+"232. relation_expression " -> "233. simple_expression "
+"233. simple_expression " [label = " simple_expression "];
+"234. mul_expression " [label = " mul_expression "];
+"233. simple_expression " -> "234. mul_expression "
+"234. mul_expression " [label = " mul_expression "];
+"235. unary_expression " [label = " unary_expression "];
+"234. mul_expression " -> "235. unary_expression "
+"235. unary_expression " [label = " unary_expression "];
+"236. climax " [label = " climax "];
+"235. unary_expression " -> "236. climax "
+"236. climax " [label = " climax "];
+"237. call ( fib )" [label = " call ( fib )"];
+"236. climax " -> "237. call ( fib )"
+"237. call ( fib )" [label = " call ( fib )"];
+"238. arguments " [label = " arguments "];
+"237. call ( fib )" -> "238. arguments "
+"238. arguments " [label = " arguments "];
+"239. argument_list " [label = " argument_list "];
+"238. arguments " -> "239. argument_list "
+"239. argument_list " [label = " argument_list "];
+"240. argument_list " [label = " argument_list "];
+"239. argument_list " -> "240. argument_list "
+"240. argument_list " [label = " argument_list "];
+"241. expression " [label = " expression "];
+"240. argument_list " -> "241. expression "
+"241. expression " [label = " expression "];
+"242. logic_expression " [label = " logic_expression "];
+"241. expression " -> "242. logic_expression "
+"242. logic_expression " [label = " logic_expression "];
+"243. and_expression " [label = " and_expression "];
+"242. logic_expression " -> "243. and_expression "
+"243. and_expression " [label = " and_expression "];
+"244. relation_expression " [label = " relation_expression "];
+"243. and_expression " -> "244. relation_expression "
+"244. relation_expression " [label = " relation_expression "];
+"245. simple_expression " [label = " simple_expression "];
+"244. relation_expression " -> "245. simple_expression "
+"245. simple_expression " [label = " simple_expression "];
+"246. mul_expression " [label = " mul_expression "];
+"245. simple_expression " -> "246. mul_expression "
+"246. mul_expression " [label = " mul_expression "];
+"247. unary_expression " [label = " unary_expression "];
+"246. mul_expression " -> "247. unary_expression "
+"247. unary_expression " [label = " unary_expression "];
+"248. climax " [label = " climax "];
+"247. unary_expression " -> "248. climax "
+"248. climax " [label = " climax "];
+"249. constants " [label = " constants "];
+"248. climax " -> "249. constants "
+"249. constants " [label = " constants "];
+"250. INT_CONSTANT ( 2 )" [label = " INT_CONSTANT ( 2 )"];
+"249. constants " -> "250. INT_CONSTANT ( 2 )"
+"239. argument_list " [label = " argument_list "];
+"251. expression " [label = " expression "];
+"239. argument_list " -> "251. expression "
+"251. expression " [label = " expression "];
+"252. logic_expression " [label = " logic_expression "];
+"251. expression " -> "252. logic_expression "
+"252. logic_expression " [label = " logic_expression "];
+"253. and_expression " [label = " and_expression "];
+"252. logic_expression " -> "253. and_expression "
+"253. and_expression " [label = " and_expression "];
+"254. relation_expression " [label = " relation_expression "];
+"253. and_expression " -> "254. relation_expression "
+"254. relation_expression " [label = " relation_expression "];
+"255. simple_expression " [label = " simple_expression "];
+"254. relation_expression " -> "255. simple_expression "
+"255. simple_expression " [label = " simple_expression "];
+"256. mul_expression " [label = " mul_expression "];
+"255. simple_expression " -> "256. mul_expression "
+"256. mul_expression " [label = " mul_expression "];
+"257. unary_expression " [label = " unary_expression "];
+"256. mul_expression " -> "257. unary_expression "
+"257. unary_expression " [label = " unary_expression "];
+"258. climax " [label = " climax "];
+"257. unary_expression " -> "258. climax "
+"258. climax " [label = " climax "];
+"259. constants " [label = " constants "];
+"258. climax " -> "259. constants "
+"259. constants " [label = " constants "];
+"260. INT_CONSTANT ( 3 )" [label = " INT_CONSTANT ( 3 )"];
+"259. constants " -> "260. INT_CONSTANT ( 3 )"
+"161. code_block " [label = " code_block "];
+"261. statement " [label = " statement "];
+"161. code_block " -> "261. statement "
+"261. statement " [label = " statement "];
+"262. write ( put )" [label = " write ( put )"];
+"261. statement " -> "262. write ( put )"
+"262. write ( put )" [label = " write ( put )"];
+"263. expression " [label = " expression "];
+"262. write ( put )" -> "263. expression "
+"263. expression " [label = " expression "];
+"264. logic_expression " [label = " logic_expression "];
+"263. expression " -> "264. logic_expression "
+"264. logic_expression " [label = " logic_expression "];
+"265. and_expression " [label = " and_expression "];
+"264. logic_expression " -> "265. and_expression "
+"265. and_expression " [label = " and_expression "];
+"266. relation_expression " [label = " relation_expression "];
+"265. and_expression " -> "266. relation_expression "
+"266. relation_expression " [label = " relation_expression "];
+"267. simple_expression " [label = " simple_expression "];
+"266. relation_expression " -> "267. simple_expression "
+"267. simple_expression " [label = " simple_expression "];
+"268. mul_expression " [label = " mul_expression "];
+"267. simple_expression " -> "268. mul_expression "
+"268. mul_expression " [label = " mul_expression "];
+"269. unary_expression " [label = " unary_expression "];
+"268. mul_expression " -> "269. unary_expression "
+"269. unary_expression " [label = " unary_expression "];
+"270. climax " [label = " climax "];
+"269. unary_expression " -> "270. climax "
+"270. climax " [label = " climax "];
+"271. variable ( z )" [label = " variable ( z )"];
+"270. climax " -> "271. variable ( z )"
+"271. variable ( z )" [label = " variable ( z )"];
+"272. IDENTIFIER ( z )" [label = " IDENTIFIER ( z )"];
+"271. variable ( z )" -> "272. IDENTIFIER ( z )"
 }
