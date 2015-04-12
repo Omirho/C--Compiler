@@ -6,25 +6,25 @@
     	¦   	¦   	¦   	¦   	+-- epsilon
     	¦   	¦   	¦   	+-- declaration
     	¦   	¦   	¦   	    	+-- variable_declaration
-    	¦   	¦   	¦   	    	    	+-- type
+    	¦   	¦   	¦   	    	    	+-- type( int )
     	¦   	¦   	¦   	    	    	¦   	+-- INT( int )
     	¦   	¦   	¦   	    	    	+-- variable_list
     	¦   	¦   	¦   	    	    	    	+-- variable( i )
     	¦   	¦   	¦   	    	    	    	    	+-- IDENTIFIER( i )
     	¦   	¦   	+-- declaration
     	¦   	¦   	    	+-- function_declaration( fib )
-    	¦   	¦   	    	    	+-- type
+    	¦   	¦   	    	    	+-- type( int )
     	¦   	¦   	    	    	¦   	+-- INT( int )
     	¦   	¦   	    	    	+-- parameters
     	¦   	¦   	    	    	¦   	+-- parameter_list
     	¦   	¦   	    	    	¦   	    	+-- parameter_list
     	¦   	¦   	    	    	¦   	    	¦   	+-- parameter
-    	¦   	¦   	    	    	¦   	    	¦   	    	+-- type
+    	¦   	¦   	    	    	¦   	    	¦   	    	+-- type( int )
     	¦   	¦   	    	    	¦   	    	¦   	    	¦   	+-- INT( int )
     	¦   	¦   	    	    	¦   	    	¦   	    	+-- variable( x )
     	¦   	¦   	    	    	¦   	    	¦   	    	    	+-- IDENTIFIER( x )
     	¦   	¦   	    	    	¦   	    	+-- parameter
-    	¦   	¦   	    	    	¦   	    	    	+-- type
+    	¦   	¦   	    	    	¦   	    	    	+-- type( int )
     	¦   	¦   	    	    	¦   	    	    	¦   	+-- INT( int )
     	¦   	¦   	    	    	¦   	    	    	+-- variable( y )
     	¦   	¦   	    	    	¦   	    	    	    	+-- IDENTIFIER( y )
@@ -52,12 +52,12 @@
     	¦   	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- IDENTIFIER( y )
     	¦   	+-- declaration
     	¦   	    	+-- function_declaration( fib )
-    	¦   	    	    	+-- type
+    	¦   	    	    	+-- type( int )
     	¦   	    	    	¦   	+-- INT( int )
     	¦   	    	    	+-- parameters
     	¦   	    	    	¦   	+-- parameter_list
     	¦   	    	    	¦   	    	+-- parameter
-    	¦   	    	    	¦   	    	    	+-- type
+    	¦   	    	    	¦   	    	    	+-- type( int )
     	¦   	    	    	¦   	    	    	¦   	+-- INT( int )
     	¦   	    	    	¦   	    	    	+-- variable( x )
     	¦   	    	    	¦   	    	    	    	+-- IDENTIFIER( x )
@@ -166,7 +166,7 @@
     	    	    	¦   	¦   	¦   	¦   	+-- code_block
     	    	    	¦   	¦   	¦   	¦   	¦   	+-- statement
     	    	    	¦   	¦   	¦   	¦   	¦   	    	+-- variable_declaration
-    	    	    	¦   	¦   	¦   	¦   	¦   	    	    	+-- type
+    	    	    	¦   	¦   	¦   	¦   	¦   	    	    	+-- type( int )
     	    	    	¦   	¦   	¦   	¦   	¦   	    	    	¦   	+-- INT( int )
     	    	    	¦   	¦   	¦   	¦   	¦   	    	    	+-- variable_list
     	    	    	¦   	¦   	¦   	¦   	¦   	    	    	    	+-- variable( z )

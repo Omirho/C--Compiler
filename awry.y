@@ -14,7 +14,7 @@ using namespace std;
 #include "symboltree.h"
 #include "mipscode.cpp"
 #include "threecode.cpp"
-
+#include "typechecker.h"
 
 ttnode *root;
 extern "C" int yylex();
@@ -86,11 +86,11 @@ variable
 
 type 
 	: INT 
-		{ $$ = make_node("","type",$1,NULL,NULL); }
+		{ $$ = make_node("int","type",$1,NULL,NULL); }
 	| FLOAT
-		{ $$ = make_node("","type",$1,NULL,NULL); }
+		{ $$ = make_node("float","type",$1,NULL,NULL); }
 	| BOOL
-		{ $$ = make_node("","type",$1,NULL,NULL); }
+		{ $$ = make_node("bool","type",$1,NULL,NULL); }
 	;
 
 epsilon 

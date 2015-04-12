@@ -1,7 +1,17 @@
+enum Type
+{
+    t_none,
+    t_int,
+    t_float,
+	t_bool,
+    t_func
+};
+
 class ttnode
 {
 public:
 	string item,identifier,name;
+	Type type;
 	ttnode *first, *second, *third;
 	ttnode() 
 	{ 

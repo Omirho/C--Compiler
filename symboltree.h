@@ -1,12 +1,3 @@
-enum Type
-{
-    t_none,
-    t_int,
-    t_float,
-	t_bool,
-    t_func
-};
-
 class param
 {
 	public:
@@ -23,13 +14,17 @@ class symbol
 {
 public:
 
-    std::string name, val;
+    std::string name;
     Type type, ret_type;
 	int scope, param_count;
 	vector<param> paras;
-    symbol(string nm,  Type t, int Scope): name(nm), scope(Scope), type(t) {}
-    symbol(string nm,  Type t, Type rt, int Scope): name(nm), scope(Scope), type(t), ret_type(rt) {}
-    symbol(string nm): name(nm), val(string()), type(t_int) {}
+	symbol(string nm): name(nm), type(t_int), param_count(0), ret_type(t_none){}
+	symbol(string nm, Type t): name(nm), type(t), param_count(0), ret_type(t_none){}
+    symbol(string nm, Type t, int Scope): name(nm), scope(Scope), type(t), ret_type(t_none), param_count(0) {}
+	symbol(string nm, Type t, vector<param> p): name(nm), paras(p), type(t), ret_type(t_none), param_count(p.size()) {}
+    symbol(string nm, Type t, Type rt, int Scope): name(nm), scope(Scope), type(t), ret_type(rt), param_count(0) {}
+	symbol(string nm, Type t, Type rt, vector<param> p): name(nm), paras(p), type(t), param_count(p.size()), ret_type(rt) {}
+	
 	string genKey()
 	{
 		string Types[] = {"none", "int", "float", "bool", "func"};
@@ -37,7 +32,6 @@ public:
 		ss << scope;
 		return name + "." + Types[type] + "." + ss.str();
 	}
-	symbol(string nm, Type t, vector<param> p): name(nm), paras(p), type(t), val(string()), param_count(p.size()) {}
 };
 
 class symtable
@@ -55,6 +49,11 @@ public:
         return string();
     }
 
+	bool lookup_curscope(string id)
+	{
+		return table[scope-1].count(id);
+	}
+	
     void add_scope()
     {
         table.push_back(map<string,symbol>());

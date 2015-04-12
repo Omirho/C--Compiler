@@ -25,11 +25,11 @@ begin [shape=box,style=filled,color=white]
 "8. variable_declaration " [label = " variable_declaration "];
 "7. declaration " -> "8. variable_declaration "
 "8. variable_declaration " [label = " variable_declaration "];
-"9. type " [label = " type "];
-"8. variable_declaration " -> "9. type "
-"9. type " [label = " type "];
+"9. type ( int )" [label = " type ( int )"];
+"8. variable_declaration " -> "9. type ( int )"
+"9. type ( int )" [label = " type ( int )"];
 "10. INT ( int )" [label = " INT ( int )"];
-"9. type " -> "10. INT ( int )"
+"9. type ( int )" -> "10. INT ( int )"
 "8. variable_declaration " [label = " variable_declaration "];
 "11. variable_list " [label = " variable_list "];
 "8. variable_declaration " -> "11. variable_list "
@@ -46,11 +46,11 @@ begin [shape=box,style=filled,color=white]
 "15. function_declaration ( fib )" [label = " function_declaration ( fib )"];
 "14. declaration " -> "15. function_declaration ( fib )"
 "15. function_declaration ( fib )" [label = " function_declaration ( fib )"];
-"16. type " [label = " type "];
-"15. function_declaration ( fib )" -> "16. type "
-"16. type " [label = " type "];
+"16. type ( int )" [label = " type ( int )"];
+"15. function_declaration ( fib )" -> "16. type ( int )"
+"16. type ( int )" [label = " type ( int )"];
 "17. INT ( int )" [label = " INT ( int )"];
-"16. type " -> "17. INT ( int )"
+"16. type ( int )" -> "17. INT ( int )"
 "15. function_declaration ( fib )" [label = " function_declaration ( fib )"];
 "18. parameters " [label = " parameters "];
 "15. function_declaration ( fib )" -> "18. parameters "
@@ -64,11 +64,11 @@ begin [shape=box,style=filled,color=white]
 "21. parameter " [label = " parameter "];
 "20. parameter_list " -> "21. parameter "
 "21. parameter " [label = " parameter "];
-"22. type " [label = " type "];
-"21. parameter " -> "22. type "
-"22. type " [label = " type "];
+"22. type ( int )" [label = " type ( int )"];
+"21. parameter " -> "22. type ( int )"
+"22. type ( int )" [label = " type ( int )"];
 "23. INT ( int )" [label = " INT ( int )"];
-"22. type " -> "23. INT ( int )"
+"22. type ( int )" -> "23. INT ( int )"
 "21. parameter " [label = " parameter "];
 "24. variable ( x )" [label = " variable ( x )"];
 "21. parameter " -> "24. variable ( x )"
@@ -79,11 +79,11 @@ begin [shape=box,style=filled,color=white]
 "26. parameter " [label = " parameter "];
 "19. parameter_list " -> "26. parameter "
 "26. parameter " [label = " parameter "];
-"27. type " [label = " type "];
-"26. parameter " -> "27. type "
-"27. type " [label = " type "];
+"27. type ( int )" [label = " type ( int )"];
+"26. parameter " -> "27. type ( int )"
+"27. type ( int )" [label = " type ( int )"];
 "28. INT ( int )" [label = " INT ( int )"];
-"27. type " -> "28. INT ( int )"
+"27. type ( int )" -> "28. INT ( int )"
 "26. parameter " [label = " parameter "];
 "29. variable ( y )" [label = " variable ( y )"];
 "26. parameter " -> "29. variable ( y )"
@@ -163,11 +163,11 @@ begin [shape=box,style=filled,color=white]
 "54. function_declaration ( fib )" [label = " function_declaration ( fib )"];
 "53. declaration " -> "54. function_declaration ( fib )"
 "54. function_declaration ( fib )" [label = " function_declaration ( fib )"];
-"55. type " [label = " type "];
-"54. function_declaration ( fib )" -> "55. type "
-"55. type " [label = " type "];
+"55. type ( int )" [label = " type ( int )"];
+"54. function_declaration ( fib )" -> "55. type ( int )"
+"55. type ( int )" [label = " type ( int )"];
 "56. INT ( int )" [label = " INT ( int )"];
-"55. type " -> "56. INT ( int )"
+"55. type ( int )" -> "56. INT ( int )"
 "54. function_declaration ( fib )" [label = " function_declaration ( fib )"];
 "57. parameters " [label = " parameters "];
 "54. function_declaration ( fib )" -> "57. parameters "
@@ -178,11 +178,11 @@ begin [shape=box,style=filled,color=white]
 "59. parameter " [label = " parameter "];
 "58. parameter_list " -> "59. parameter "
 "59. parameter " [label = " parameter "];
-"60. type " [label = " type "];
-"59. parameter " -> "60. type "
-"60. type " [label = " type "];
+"60. type ( int )" [label = " type ( int )"];
+"59. parameter " -> "60. type ( int )"
+"60. type ( int )" [label = " type ( int )"];
 "61. INT ( int )" [label = " INT ( int )"];
-"60. type " -> "61. INT ( int )"
+"60. type ( int )" -> "61. INT ( int )"
 "59. parameter " [label = " parameter "];
 "62. variable ( x )" [label = " variable ( x )"];
 "59. parameter " -> "62. variable ( x )"
@@ -505,11 +505,11 @@ begin [shape=box,style=filled,color=white]
 "168. variable_declaration " [label = " variable_declaration "];
 "167. statement " -> "168. variable_declaration "
 "168. variable_declaration " [label = " variable_declaration "];
-"169. type " [label = " type "];
-"168. variable_declaration " -> "169. type "
-"169. type " [label = " type "];
+"169. type ( int )" [label = " type ( int )"];
+"168. variable_declaration " -> "169. type ( int )"
+"169. type ( int )" [label = " type ( int )"];
 "170. INT ( int )" [label = " INT ( int )"];
-"169. type " -> "170. INT ( int )"
+"169. type ( int )" -> "170. INT ( int )"
 "168. variable_declaration " [label = " variable_declaration "];
 "171. variable_list " [label = " variable_list "];
 "168. variable_declaration " -> "171. variable_list "

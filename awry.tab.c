@@ -85,7 +85,7 @@ using namespace std;
 #include "symboltree.h"
 #include "mipscode.cpp"
 #include "threecode.cpp"
-
+#include "typechecker.h"
 
 ttnode *root;
 extern "C" int yylex();
@@ -1628,21 +1628,21 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 89 "awry.y"
-    { (yyval.tval) = make_node("","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
+    { (yyval.tval) = make_node("int","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
 #line 91 "awry.y"
-    { (yyval.tval) = make_node("","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
+    { (yyval.tval) = make_node("float","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
 #line 93 "awry.y"
-    { (yyval.tval) = make_node("","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
+    { (yyval.tval) = make_node("bool","type",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 14:
