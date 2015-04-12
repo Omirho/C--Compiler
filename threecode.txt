@@ -1,15 +1,1 @@
 main:
-i = 1
-j = 0
-label_1:
-temp_1 = j < 10
-if temp_1 goto label_2
-goto label_4
-label_2:
-temp_2 = i * 2
-i = temp_2
-label_3:
-j = j + 1
-goto label_1
-label_4:
-write i

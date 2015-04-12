@@ -1,9 +1,6 @@
+int i;
 main
 {
-	i = 1;
-	foreach(j in 10)
-	{
-		i = i * 2;
-	}
-	put(i);
+	int i;
+	int j;
 }
