@@ -1,21 +1,16 @@
 int i;
-int add(int x)
+int fib(int x)
 {
-	if(x == 0)
+	if(x<=2)
 	{
-		return 0;
+		return x;
 	}
-	else
-	{
-		put(x);
-		return add(x-1);
-	}
+	return fib(x-1) + fib(x-2);
 }
 main
 {
 	int z;
 	z = 5;
-	put(z);
-	z = add(1);
+	z = fib(10);
 	put(z);
 }

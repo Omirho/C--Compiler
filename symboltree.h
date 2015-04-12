@@ -55,13 +55,13 @@ public:
         return string();
     }
 
-    int add_scope()
+    void add_scope()
     {
         table.push_back(map<string,symbol>());
         scope++;
     }
 
-    int remove_scope()
+    void remove_scope()
     {
         table.pop_back();
         scope--;
@@ -72,9 +72,10 @@ public:
 		s.scope = scope;
 		table[scope-1].insert(make_pair(s.name, s));
 	}
-	
+
 	vector<string> getparams(string id)
 	{
+		assert(table[0].count(id) > 0);
 		symbol func = table[0].find(id)->second;
 		vector<string> r;
 		for(int i = 0; i < func.param_count; ++i)
@@ -90,7 +91,7 @@ public:
 		for(int i = 2; i <= scope; i++)
 			for(map<string,symbol>::iterator it = table[i-1].begin(); it != table[i-1].end(); ++it)
 				back_var.push_back(it -> second.genKey());
-		for(int i = scope; i > 1; i--)
+		for(int i = scope ; i > 1; i--)
 			table.pop_back();
 		scope = 1;
 		return back_var;
@@ -98,13 +99,13 @@ public:
 	
 	Type getType(string s)
 	{
-			string Types[] = {"none", "int", "float", "bool", "func"};
-			for(int i = 0; i < 5; ++i)
-			{
-				if(s == Types[i])
-					return static_cast<Type>(i);
-			}
-			return t_none;
+		string Types[] = {"none", "int", "float", "bool", "func"};
+		for(int i = 0; i < 5; ++i)
+		{
+			if(s == Types[i])
+				return static_cast<Type>(i);
+		}
+		return t_none;
 	}
 	
 	void restore(vector<string> back_var)
@@ -124,5 +125,6 @@ public:
 			 table.push_back(map<string,symbol>());
 		for(int i = 0; i < vs.size(); i++)
 			table[vs[i].scope - 1].insert(make_pair(vs[i].name,vs[i]));
+		scope = max_scope;
 	}
 };

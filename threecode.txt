@@ -1,0 +1,79 @@
+variable_declaration i
+_fib:
+parameter x
+temp_1.int.2 = x.int.2 <= 2
+temp_2.int.2 = temp_1.int.2
+if temp_2.int.2 goto label_1
+goto label_2
+label_1:
+temp_3.int.3 = x.int.2
+return temp_3.int.3
+label_2:
+temp_4.int.2 = x.int.2 - 2
+temp_5.int.2 = temp_4.int.2
+push return address
+push temp_1.int.2
+push temp_2.int.2
+push temp_4.int.2
+push temp_5.int.2
+push x.int.2
+copy temp_5.int.2 to x.int.2
+call _fib
+pop x.int.2
+pop temp_5.int.2
+pop temp_4.int.2
+pop temp_2.int.2
+pop temp_1.int.2
+pop return address
+assign return value in temp_6.int.2
+temp_7.int.2 = x.int.2 - 1
+temp_8.int.2 = temp_7.int.2
+push return address
+push temp_1.int.2
+push temp_2.int.2
+push temp_4.int.2
+push temp_5.int.2
+push temp_6.int.2
+push temp_7.int.2
+push temp_8.int.2
+push x.int.2
+copy temp_8.int.2 to x.int.2
+call _fib
+pop x.int.2
+pop temp_8.int.2
+pop temp_7.int.2
+pop temp_6.int.2
+pop temp_5.int.2
+pop temp_4.int.2
+pop temp_2.int.2
+pop temp_1.int.2
+pop return address
+assign return value in temp_9.int.2
+temp_10.int.2 = temp_9.int.2 + temp_6.int.2
+temp_11.int.2 = temp_10.int.2
+return temp_11.int.2
+return to caller
+main:
+variable_declaration z
+temp_12.int.2 = 5
+z.int.2 = temp_12.int.2
+temp_13.int.2 = z.int.2
+temp_14.int.2 = 10
+push return address
+push temp_12.int.2
+push temp_13.int.2
+push temp_14.int.2
+push z.int.2
+copy temp_14.int.2 to x.int.2
+call _fib
+pop z.int.2
+pop temp_14.int.2
+pop temp_13.int.2
+pop temp_12.int.2
+pop return address
+assign return value in temp_15.int.2
+temp_16.int.2 = temp_15.int.2
+z.int.2 = temp_16.int.2
+temp_17.int.2 = z.int.2
+temp_18.int.2 = z.int.2
+write temp_18.int.2

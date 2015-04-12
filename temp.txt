@@ -1,0 +1,16 @@
+int i;
+int fib(int x)
+{
+	if(x<=2)
+	{
+		return x;
+	}
+	return fib(x-1) + fib(x-2);
+}
+main
+{
+	int z;
+	z = 5;
+	z = fib(10);
+	put(z);
+}

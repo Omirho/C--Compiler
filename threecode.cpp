@@ -18,7 +18,9 @@ string newtemp()
 {
 	stringstream ss;
 	ss << ++tempco;
-	return "temp._" + ss.str();
+	string s = "temp_" + ss.str();
+	mipstable.add_var(symbol(s));
+	return mipstable.lookup(s);
 }
 
 vector<string> breaks;
@@ -354,13 +356,13 @@ string generatecode(ttnode *t)
 		genmips(def,"pushreturn");
 		//backup variables
 		vector<string> backvars = mipstable.backup();
-		/* for(int i=0;i<backvars.size();i++)
+		for(int i=0;i<backvars.size();i++)
 		{
 			tcode << "push " << backvars[i] << endl;
 			genmips(def,"push",backvars[i]);
-		} */
+		}
 		//set arguments
-		/*for(int i=0;i<v.size();i++)
+		for(int i=0;i<v.size();i++)
 		{
 			//tcode << "argument " << v[i] << endl;
 			tcode << "copy " << v[i] << " to " << pars[i] << endl;
@@ -375,16 +377,14 @@ string generatecode(ttnode *t)
 			tcode << "pop " << backvars[i] << endl;
 			genmips(def,"pop",backvars[i]);
 		}
-		//restore(backvars);
+		mipstable.restore(backvars);
 		tcode << "pop return address" << endl;
 		genmips(def,"popreturn");
 		string ret = newtemp();
-		tcode << "assign return value" << endl;
+		tcode << "assign return value in " << ret << endl;
 		genmips(def,"restorereturn",ret); 
-		return ret;  */
-		cerr << "hoho" << endl;
-		//return def;
-		return "tt";
+		return ret; 
+		return def; 
 	}
 	if(t->identifier == "op1")
 	{

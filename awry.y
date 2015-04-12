@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <fstream>
 #include <map>
+#include <cassert>
 using namespace std;
 #include "ttree.h"
 #include "ttfunc.cpp"
@@ -332,6 +333,7 @@ void yyerror(string s)
 
 int main()
 {
+	freopen("test.txt","r",stdin);
 	bool failure = yyparse();
 	failure |= fail;
 	if(failure) 

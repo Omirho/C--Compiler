@@ -11,23 +11,53 @@
     	¦   	¦   	    	    	    	+-- variable( i )
     	¦   	¦   	    	    	    	    	+-- IDENTIFIER( i )
     	¦   	+-- declaration
-    	¦   	    	+-- function_declaration( add )
+    	¦   	    	+-- function_declaration( fib )
     	¦   	    	    	+-- type
     	¦   	    	    	¦   	+-- INT( int )
     	¦   	    	    	+-- parameters
     	¦   	    	    	¦   	+-- parameter_list
-    	¦   	    	    	¦   	    	+-- parameter_list
-    	¦   	    	    	¦   	    	¦   	+-- parameter
-    	¦   	    	    	¦   	    	¦   	    	+-- type
-    	¦   	    	    	¦   	    	¦   	    	¦   	+-- INT( int )
-    	¦   	    	    	¦   	    	¦   	    	+-- variable( x )
-    	¦   	    	    	¦   	    	¦   	    	    	+-- IDENTIFIER( x )
     	¦   	    	    	¦   	    	+-- parameter
     	¦   	    	    	¦   	    	    	+-- type
     	¦   	    	    	¦   	    	    	¦   	+-- INT( int )
-    	¦   	    	    	¦   	    	    	+-- variable( y )
-    	¦   	    	    	¦   	    	    	    	+-- IDENTIFIER( y )
+    	¦   	    	    	¦   	    	    	+-- variable( x )
+    	¦   	    	    	¦   	    	    	    	+-- IDENTIFIER( x )
     	¦   	    	    	+-- code_block
+    	¦   	    	    	    	+-- code_block
+    	¦   	    	    	    	¦   	+-- statement
+    	¦   	    	    	    	¦   	    	+-- condition_stat
+    	¦   	    	    	    	¦   	    	    	+-- expression
+    	¦   	    	    	    	¦   	    	    	¦   	+-- logic_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	+-- and_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	+-- relation_expression( op )
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	+-- relation_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	¦   	+-- simple_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	¦   	    	+-- mul_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	¦   	    	    	+-- unary_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	¦   	    	    	    	+-- climax
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	¦   	    	    	    	    	+-- variable( x )
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	¦   	    	    	    	    	    	+-- IDENTIFIER( x )
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	+-- op3
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	¦   	+-- LE_OP( <= )
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	+-- simple_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	    	+-- mul_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	    	    	+-- unary_expression
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	    	    	    	+-- climax
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	    	    	    	    	+-- constants
+    	¦   	    	    	    	¦   	    	    	¦   	    	    	    	    	    	    	    	    	+-- INT_CONSTANT( 2 )
+    	¦   	    	    	    	¦   	    	    	+-- code_block
+    	¦   	    	    	    	¦   	    	    	    	+-- statement
+    	¦   	    	    	    	¦   	    	    	    	    	+-- return_stat( op )
+    	¦   	    	    	    	¦   	    	    	    	    	    	+-- RETURN( return )
+    	¦   	    	    	    	¦   	    	    	    	    	    	+-- expression
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	+-- logic_expression
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	    	+-- and_expression
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	    	    	+-- relation_expression
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	    	    	    	+-- simple_expression
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	+-- mul_expression
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	+-- unary_expression
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	+-- climax
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- variable( x )
+    	¦   	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- IDENTIFIER( x )
     	¦   	    	    	    	+-- statement
     	¦   	    	    	    	    	+-- return_stat( op )
     	¦   	    	    	    	    	    	+-- RETURN( return )
@@ -40,26 +70,79 @@
     	¦   	    	    	    	    	    	    	    	    	    	    	¦   	+-- mul_expression
     	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	+-- unary_expression
     	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	+-- climax
-    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	+-- variable( x )
-    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	+-- IDENTIFIER( x )
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	+-- call( fib )
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	+-- arguments
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	+-- argument_list
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	+-- expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	+-- logic_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	+-- and_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	+-- relation_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	+-- simple_expression( op )
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	+-- simple_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	¦   	+-- mul_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	¦   	    	+-- unary_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	+-- climax
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	+-- variable( x )
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	+-- IDENTIFIER( x )
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	+-- op1
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	¦   	+-- SU_OP( - )
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	+-- mul_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	+-- unary_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- climax
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- constants
+    	¦   	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- INT_CONSTANT( 1 )
     	¦   	    	    	    	    	    	    	    	    	    	    	+-- op1
     	¦   	    	    	    	    	    	    	    	    	    	    	¦   	+-- AD_OP( + )
     	¦   	    	    	    	    	    	    	    	    	    	    	+-- mul_expression
     	¦   	    	    	    	    	    	    	    	    	    	    	    	+-- unary_expression
     	¦   	    	    	    	    	    	    	    	    	    	    	    	    	+-- climax
-    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- variable( y )
-    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- IDENTIFIER( y )
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- call( fib )
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- arguments
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- argument_list
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- logic_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- and_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- relation_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- simple_expression( op )
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- simple_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	+-- mul_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	+-- unary_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	+-- climax
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	+-- variable( x )
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	+-- IDENTIFIER( x )
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- op1
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	+-- SU_OP( - )
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- mul_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- unary_expression
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- climax
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- constants
+    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- INT_CONSTANT( 2 )
     	+-- main_function
     	    	+-- code_block
     	    	    	+-- code_block
     	    	    	¦   	+-- code_block
+    	    	    	¦   	¦   	+-- code_block
+    	    	    	¦   	¦   	¦   	+-- statement
+    	    	    	¦   	¦   	¦   	    	+-- variable_declaration
+    	    	    	¦   	¦   	¦   	    	    	+-- type
+    	    	    	¦   	¦   	¦   	    	    	¦   	+-- INT( int )
+    	    	    	¦   	¦   	¦   	    	    	+-- variable_list
+    	    	    	¦   	¦   	¦   	    	    	    	+-- variable( z )
+    	    	    	¦   	¦   	¦   	    	    	    	    	+-- IDENTIFIER( z )
     	    	    	¦   	¦   	+-- statement
-    	    	    	¦   	¦   	    	+-- variable_declaration
-    	    	    	¦   	¦   	    	    	+-- type
-    	    	    	¦   	¦   	    	    	¦   	+-- INT( int )
-    	    	    	¦   	¦   	    	    	+-- variable_list
-    	    	    	¦   	¦   	    	    	    	+-- variable( z )
-    	    	    	¦   	¦   	    	    	    	    	+-- IDENTIFIER( z )
+    	    	    	¦   	¦   	    	+-- expression( = )
+    	    	    	¦   	¦   	    	    	+-- variable( z )
+    	    	    	¦   	¦   	    	    	¦   	+-- IDENTIFIER( z )
+    	    	    	¦   	¦   	    	    	+-- expression
+    	    	    	¦   	¦   	    	    	    	+-- logic_expression
+    	    	    	¦   	¦   	    	    	    	    	+-- and_expression
+    	    	    	¦   	¦   	    	    	    	    	    	+-- relation_expression
+    	    	    	¦   	¦   	    	    	    	    	    	    	+-- simple_expression
+    	    	    	¦   	¦   	    	    	    	    	    	    	    	+-- mul_expression
+    	    	    	¦   	¦   	    	    	    	    	    	    	    	    	+-- unary_expression
+    	    	    	¦   	¦   	    	    	    	    	    	    	    	    	    	+-- climax
+    	    	    	¦   	¦   	    	    	    	    	    	    	    	    	    	    	+-- constants
+    	    	    	¦   	¦   	    	    	    	    	    	    	    	    	    	    	    	+-- INT_CONSTANT( 5 )
     	    	    	¦   	+-- statement
     	    	    	¦   	    	+-- expression( = )
     	    	    	¦   	    	    	+-- variable( z )
@@ -72,20 +155,9 @@
     	    	    	¦   	    	    	    	    	    	    	    	+-- mul_expression
     	    	    	¦   	    	    	    	    	    	    	    	    	+-- unary_expression
     	    	    	¦   	    	    	    	    	    	    	    	    	    	+-- climax
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	+-- call( add )
+    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	+-- call( fib )
     	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	+-- arguments
     	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	+-- argument_list
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- argument_list
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	+-- expression
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	+-- logic_expression
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	+-- and_expression
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	+-- relation_expression
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	+-- simple_expression
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	+-- mul_expression
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	+-- unary_expression
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	+-- climax
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	+-- constants
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	¦   	    	    	    	    	    	    	    	    	    	+-- INT_CONSTANT( 4 )
     	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- expression
     	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- logic_expression
     	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- and_expression
@@ -95,7 +167,7 @@
     	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- unary_expression
     	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- climax
     	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- constants
-    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- INT_CONSTANT( 5 )
+    	    	    	¦   	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	    	+-- INT_CONSTANT( 10 )
     	    	    	+-- statement
     	    	    	    	+-- write( put )
     	    	    	    	    	+-- expression
