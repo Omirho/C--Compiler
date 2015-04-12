@@ -23,6 +23,14 @@ string newtemp()
 	return mipstable.lookup(s);
 }
 
+string getstrl()
+{
+	static int c = 0;
+	stringstream ss;
+	ss << ++c;
+	return "_.string_" + ss.str();
+}
+
 vector<string> breaks;
 vector<string> continues;
 
@@ -227,10 +235,10 @@ string generatecode(ttnode *t)
 		genmips(def,"write",a);
 		return a;
 	}
-	if(t->identifier == "puts")
+	if(t->identifier == "putstring")
 	{
 		string s = getstrl();
-		pair<string,string> p = make_pair(s,t->first);
+		pair<string,string> p = make_pair(s,t->first->item);
 		lit_strings.push_back(p);
 		tcode << "print " << s << endl;
 		genmips(def,"puts",s);

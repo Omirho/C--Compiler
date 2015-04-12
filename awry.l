@@ -22,6 +22,7 @@ NUMBER ({DIG}+)
 LOWER ([a-z])
 LETTER ({LOWER}|[A-Z]|_)
 IDENTIFIER ([A-Za-z_]([A-Za-z0-9_])*)
+STRING_LITERAL (\"(\\.|[^\\"])*\")
 
 %%
 
@@ -37,6 +38,7 @@ IDENTIFIER ([A-Za-z_]([A-Za-z0-9_])*)
 "in" 			{ token( IN); }
 "get" 			{ token( GET); }
 "put" 			{ token( PUT); }
+"puts" 			{ token( PUTS); }
 "break" 		{ token( BREAK); }
 "continue" 		{ token( CONTINUE); }
 "return" 		{ token( RETURN); }
@@ -66,6 +68,7 @@ IDENTIFIER ([A-Za-z_]([A-Za-z0-9_])*)
 {IDENTIFIER} 	{ token(IDENTIFIER);}
 {DECIMAL} 		{ token(FLOAT_CONSTANT);	}
 {NUMBER}        { token(INT_CONSTANT);	}
+{STRING_LITERAL} {token(STRING);} 
 {BLANKSPACES} 
 \n				{}
 .  				cerr << "TOKEN ERROR\n" ;

@@ -30,18 +30,18 @@ void yyerror(string s);
 }
 
 
-%token <tval> GET PUT MAIN
+%token <tval> GET PUT PUTS MAIN
 %token <tval> LE_OP GE_OP EQ_OP NE_OP LT_OP GT_OP AD_OP SU_OP MU_OP DI_OP
 %token <tval> AND OR
 %token <tval> CONST
 %token <tval> IF ELSE WHILE FOR IN CONTINUE BREAK RETURN 
 
-%token <tval> INT_CONSTANT FLOAT_CONSTANT TRUE FALSE IDENTIFIER INT FLOAT BOOL
+%token <tval> STRING INT_CONSTANT FLOAT_CONSTANT TRUE FALSE IDENTIFIER INT FLOAT BOOL
 
 %type <tval> program declaration_list declaration variable_declaration variable_list variable
 %type <tval> type epsilon function_declaration parameters parameter_list parameter
 %type <tval> main_function code_block statement condition_stat loop_stat
-%type <tval> for_loop while_loop return_stat read write
+%type <tval> for_loop while_loop return_stat read write putstring string_literal
 %type <tval> expression logic_expression and_expression relation_expression simple_expression mul_expression unary_expression
 %type <tval> climax call arguments argument_list constants
 %type <tval> op1 op2 op3 unary_op
@@ -93,6 +93,11 @@ type
 		{ $$ = make_node("bool","type",$1,NULL,NULL); }
 	;
 
+string_literal
+	: STRING
+		{ $$ = make_node($1->item,"string_literal",$1,NULL,NULL);}
+	;
+	
 epsilon 
 	: 
 		{ $$ = make_node("","epsilon",NULL,NULL,NULL); }
@@ -155,6 +160,8 @@ statement
 		{ $$ = make_node("","statement",$1,NULL,NULL); }
 	| write ';'
 		{ $$ = make_node("","statement",$1,NULL,NULL); }
+	| putstring ';'
+		{ $$ = make_node("","statement",$1,NULL,NULL); }
 	| error ';' { yyerrok;                  }
 	;
 
@@ -199,6 +206,11 @@ write
 		{ $$ = make_node("put","write",$3,NULL,NULL); }
 	;
 
+putstring 
+	: PUTS '(' string_literal ')'
+		{ $$ = make_node("puts","putstring",$3,NULL,NULL); }
+	;
+	
 expression 
 	: variable '=' expression 
 		{ $$ = make_node("=","expression",$1,$3,NULL); }
@@ -333,7 +345,7 @@ void yyerror(string s)
 
 int main()
 {
-	freopen("test.txt","r",stdin);
+	//freopen("test.txt","r",stdin);
 	bool failure = yyparse();
 	failure |= fail;
 	if(failure) 
