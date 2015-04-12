@@ -93,6 +93,7 @@ public:
 		for(int i = scope; i > 1; i--)
 			table.pop_back();
 		scope = 1;
+		return back_var;
 	}
 	
 	Type getType(string s)
@@ -123,7 +124,5 @@ public:
 			 table.push_back(map<string,symbol>());
 		for(int i = 0; i < vs.size(); i++)
 			table[vs[i].scope - 1].insert(make_pair(vs[i].name,vs[i]));
-			
-		return back_var;
 	}
 };
