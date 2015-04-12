@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .data
 _max:		.word 0
 _temp._1:		.word 0
@@ -61,3 +62,5 @@ syscall
 j		label_1
 label_3:
 jr	$ra
+=======
+>>>>>>> origin/master

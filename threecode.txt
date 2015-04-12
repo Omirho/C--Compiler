@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 main:
 max = 0
 temp._1 = max
@@ -22,3 +23,5 @@ label_7:
 write max
 goto label_1
 label_3:
+=======
+>>>>>>> origin/master

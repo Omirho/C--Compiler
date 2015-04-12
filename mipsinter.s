@@ -1,4 +1,5 @@
 .text
+<<<<<<< HEAD
 main:
 li	$t1, 0
 li	$t2, 0
@@ -54,3 +55,5 @@ syscall
 j		label_1
 label_3:
 jr	$ra
+=======
+>>>>>>> origin/master
