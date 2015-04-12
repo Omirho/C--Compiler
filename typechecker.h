@@ -1,4 +1,5 @@
 #define DEBUG if(1)
+#define errlist cerr
 
 class errcheck
 {
@@ -7,7 +8,7 @@ class errcheck
 		bool err; 
 		int inLoop;
 		symbol* infunc;
-		stringstream errlist;
+		//stringstream errlist;
 		errcheck(ttnode *t)
 		{
 			if(t == NULL) return;
@@ -19,6 +20,7 @@ class errcheck
 		
 		void check(ttnode *t)
 		{
+			if(t != NULL) DEBUG cerr << t -> identifier <<' ' << t -> item << endl;
 			if(t == NULL) return;
 			else if(t -> identifier == "variable_declaration")		vardec(t);
 			else if(t -> identifier == "function_declaration") 		fundec(t); 		
@@ -28,7 +30,11 @@ class errcheck
 			else if(t -> identifier == "condition_stat")			concheck(t);	
 			else if(t -> identifier == "for_loop")					forcheck(t);	
 			else if(t -> identifier == "while_loop")				whilecheck(t);	
-			
+			else if(t -> identifier == "return_stat")				retcheck(t);	
+			else if(t -> identifier == "expression")				expcheck(t);	
+			else if(t -> identifier == "and_expression")			boolecheck(t);	
+			else if(t -> identifier == "logic_expression")			boolecheck(t);	
+			else	{check(t->first); check(t->second); check(t->third);}
 		}
 		
 		void vardec(ttnode *t)
@@ -98,6 +104,7 @@ class errcheck
 				err = true;
 				return;
 			}
+			t -> type = table.lookupX(t->first->item).type;
 		}
 		
 		void statcheck(ttnode *t)
@@ -168,19 +175,65 @@ class errcheck
 				err = true;
 				return;
 			}
-			if(t->item == "op")
+			else if(t->item == "op")
 			{
 				check(t->second);
 				if(t->second->type != infunc->ret_type)
 				{
-					errlist << "Return type mismatch in function \n" << infunc->name << endl;
+					errlist << "Return type mismatch in function " << infunc->name << endl;
+					DEBUG cerr << t->second->type << ' ' << infunc->ret_type << endl; 
 					err = true;
 				}
-				DEBUG cerr << "return with op" << endl;
+				DEBUG cerr << "Return with op" << endl;
 			}
 			else
 			{
 				DEBUG cerr << "Return without op" << endl;
 			}
 		}
-};
+		
+		void expcheck(ttnode *t)
+		{
+			if(t->item == "=")
+			{
+				check(t -> second);
+				Type t1 = t -> second -> type;
+				check(t -> first);
+				Type t2 = t -> first -> type;
+				if(t1 != t2)
+				{
+					errlist << "Expression type mismatch." << endl;
+					DEBUG cerr << t1 << ' ' << t2 << endl; 
+					err = true;
+				}
+				t -> type = t -> first -> type;
+			}
+			else
+			{
+				t -> type = t_bool;
+				check(t -> first);
+			}
+		}
+		
+		void boolecheck(ttnode *t)
+		{
+			if(t->item == "and" || t -> item == "or")
+			{
+				check(t->second);
+				Type t1 = t -> second -> type;
+				check(t->first);
+				Type t2 = t -> first -> type;
+				if(t1 != t2)
+				{
+					errlist << "Expression type mismatch." << endl;
+					err = true;
+				}
+				t -> type = t -> first -> type;
+			}
+			else
+			{
+				t -> type = t_bool;
+				check(t -> first);
+			}
+		}
+};	

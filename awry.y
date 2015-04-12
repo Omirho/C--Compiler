@@ -347,6 +347,9 @@ int main()
 {
 	//freopen("test.txt","r",stdin);
 	bool failure = yyparse();
+	errcheck catchemall(root);
+	failure |= catchemall.err;
+	//if(catchemall.err) cerr << catchemall.errlist.str() << endl;
 	failure |= fail;
 	if(failure) 
 		std::cerr << "Parsing Failed\n";

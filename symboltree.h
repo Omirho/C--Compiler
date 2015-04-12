@@ -41,13 +41,20 @@ class symtable
 public:
     symtable(): scope(1) { table.push_back(map<string,symbol>());}
 
-    string lookup(string id)
+    symbol lookupX(string id)
     {
         for(int i = scope; i > 0; --i)
             if(table[i-1].count(id))
-                return table[i-1].find(id)->second.genKey();
-        return string();
+                return table[i-1].find(id)->second;
+        return symbol(string());
     }
+	
+	string lookup(string id)
+	{
+		symbol temp = lookupX(id);
+		if(temp.name == string()) return string();
+		return temp.genKey();
+	}
 
 	bool lookup_curscope(string id)
 	{
