@@ -12,7 +12,7 @@ string newtemp()
 {
 	stringstream ss;
 	ss << ++tempco;
-	return "temp." + ss.str();
+	return "temp._" + ss.str();
 }
 
 vector<string> breaks;
