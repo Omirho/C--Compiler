@@ -43,7 +43,7 @@ class symtable
     int scope;
     vector < map < string, symbol > > table;
 public:
-    symtable(): scope(1) {}
+    symtable(): scope(1) { table.push_back(map<string,symbol>());}
 
     string lookup(string id)
     {
@@ -89,8 +89,8 @@ public:
 		for(int i = 2; i <= scope; i++)
 			for(map<string,symbol>::iterator it = table[i-1].begin(); it != table[i-1].end(); ++it)
 				back_var.push_back(it -> second.genKey());
-		
 		for(int i = scope; i > 1; i--)
 			table.pop_back();
+		return back_var;
 	}
 };
