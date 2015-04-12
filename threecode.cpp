@@ -1,6 +1,9 @@
 ofstream tcode("threecode.txt");
 
 vector<string> generateargs(ttnode *t);
+vector<string> generatevars(ttnode *t);
+
+symtable mipstable;
 
 string newlabel()
 {
@@ -22,17 +25,32 @@ vector<string> continues;
 
 string generatecode(ttnode *t)
 {
+	if(t->identifier == "variable_declaration")
+	{
+		vector<string> v = generatevars(t->second);
+		for(int i=0;i<v.size();i++)
+		{
+			mipstable.add_var(symbol(v[i]));
+		}
+		return def;
+	}
+	if(t->identifier == "function_declaration")
+	{
+		return def;
+	}
 	if(t->identifier == "main_function")
 	{
 		tcode << "main" << ":" << endl;
 		genmips("main");
+		mipstable.add_scope();
 		string a = generatecode(t->first);
+		mipstable.remove_scope();
 		genmips(def,"exit");
 		return def;
 	}
 	if(t->identifier == "variable")
 	{
-		return t->first->item;
+		return mipstable.lookup(t->first->item);
 	}
 	if(t->identifier == "statement")
 	{
@@ -61,12 +79,16 @@ string generatecode(ttnode *t)
 		genmips(def,"goto",end);
 		tcode << start << ":" << endl;
 		genmips(start);
+		mipstable.add_scope();
 		string b = generatecode(t->second);
+		mipstable.remove_scope();
 		tcode << end << ":" << endl;
 		genmips(end);
 		if(t->item == "op")
 		{
+			mipstable.add_scope();
 			string c = generatecode(t->third);
+			mipstable.remove_scope();
 		}
 		return def;
 	}
@@ -93,7 +115,9 @@ string generatecode(ttnode *t)
 		genmips(def,"goto",end);
 		tcode << middle << ":" << endl;
 		genmips(middle);
+		mipstable.add_scope();
 		string c = generatecode(t->third);
+		mipstable.remove_scope();
 		tcode << con << ":" << endl;
 		genmips(con);
 		tcode << a << " = " << a << " + 1" << endl;
@@ -122,7 +146,9 @@ string generatecode(ttnode *t)
 		genmips(def,"goto",end);
 		tcode << middle << ":" << endl;
 		genmips(middle);
+		mipstable.add_scope();
 		string b = generatecode(t->second);
+		mipstable.remove_scope();
 		tcode << "goto " << start << endl;
 		genmips(def,"goto",start);
 		tcode << end << ":" << endl;
@@ -363,6 +389,21 @@ vector<string> generateargs(ttnode *t)
 			v = generateargs(t->first);
 			v.push_back(generatecode(t->second));
 		}
+	}
+	return v;
+}
+
+vector<string> generatevars(ttnode *t)
+{
+	vector<string> v;
+	if(t->second == NULL)
+	{
+		v.push_back(t->first->item);
+	}
+	else
+	{
+		v = generatevars(t->first);
+		v.push_back(t->second->item);
 	}
 	return v;
 }
