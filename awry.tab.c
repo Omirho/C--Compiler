@@ -2352,6 +2352,7 @@ void yyerror(string s)
 
 int main()
 {
+	freopen("test.txt","r",stdin);
 	bool failure = yyparse();
 	failure |= fail;
 	if(failure) 
@@ -2362,6 +2363,6 @@ int main()
 		printtree(root); printtreeold(root, "+-- ");
 		mcode << ".text" << endl;
 		generatecode(root);
-		data();
+		//data();
 	}
 }

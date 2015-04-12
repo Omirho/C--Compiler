@@ -38,8 +38,8 @@ string generatecode(ttnode *t)
 	}
 	if(t->identifier == "function_declaration")
 	{
-		tcode << t->item << ":" << endl;
-		genmips(t->item);
+		tcode << "_"+t->item << ":" << endl;
+		genmips("_"+t->item);
 		if(t->third != NULL)
 		{
 			vector<param> v = generatepars(t->second->first);
@@ -63,8 +63,7 @@ string generatecode(ttnode *t)
 			{
 				mipstable.add_var(symbol(v[i].name));
 			}
-			string a = generatecode(t->second);
-			
+			string a = generatecode(t->second);	
 		}
 		mipstable.remove_scope();
 		tcode << "return to caller" << endl;
@@ -203,6 +202,7 @@ string generatecode(ttnode *t)
 		{
 			tcode << "return " << endl;
 		}
+		genmips(def,"exit");
 		return def;
 	}
 	if(t->identifier == "read")
@@ -350,25 +350,25 @@ string generatecode(ttnode *t)
 		//evaluate arguments
 		vector<string> v = generateargs(t->first->first);
 		vector<string> pars = mipstable.getparams(t->item);
-		/* tcode << "push return address" << endl;
+		tcode << "push return address" << endl;
 		genmips(def,"pushreturn");
 		//backup variables
 		vector<string> backvars = mipstable.backup();
-		for(int i=0;i<backvars.size();i++)
+		/* for(int i=0;i<backvars.size();i++)
 		{
 			tcode << "push " << backvars[i] << endl;
 			genmips(def,"push",backvars[i]);
-		}*/
+		} */
 		//set arguments
-		for(int i=0;i<v.size();i++)
+		/*for(int i=0;i<v.size();i++)
 		{
 			//tcode << "argument " << v[i] << endl;
 			tcode << "copy " << v[i] << " to " << pars[i] << endl;
 			genmips(def,"copy",v[i],pars[i]);
 		}
 		//call function
-		/*tcode << "call " << t->item << endl;
-		genmips(def,"call",t->item);
+		tcode << "call " << "_"+t->item << endl;
+		genmips(def,"call","_"+t->item);
 		//restore variables
 		for(int i = backvars.size()-1;i>=0;i--)
 		{
@@ -381,8 +381,10 @@ string generatecode(ttnode *t)
 		string ret = newtemp();
 		tcode << "assign return value" << endl;
 		genmips(def,"restorereturn",ret); 
-		return ret; */
-		return def;
+		return ret;  */
+		cerr << "hoho" << endl;
+		//return def;
+		return "tt";
 	}
 	if(t->identifier == "op1")
 	{

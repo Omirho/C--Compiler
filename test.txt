@@ -1,11 +1,21 @@
 int i;
-int add(int x,int y)
+int add(int x)
 {
-	return x+y;
+	if(x == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		put(x);
+		return add(x-1);
+	}
 }
 main
 {
 	int z;
-	z = add(4,5);
+	z = 5;
+	put(z);
+	z = add(1);
 	put(z);
 }
