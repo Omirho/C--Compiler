@@ -79,7 +79,7 @@ variable_list
 
 variable 
 	: IDENTIFIER
-		{ $$ = make_node("","variable",$1,NULL,NULL); }
+		{ $$ = make_node($1->item,"variable",$1,NULL,NULL); }
 	;
 
 type 

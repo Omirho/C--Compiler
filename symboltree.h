@@ -43,7 +43,7 @@ class symtable
     int scope;
     vector < map < string, symbol > > table;
 public:
-    symtable(): scope(1) {}
+    symtable(): scope(1) {table.push_back(map<string,symbol> ());}
 
     string lookup(string id)
     {

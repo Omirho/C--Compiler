@@ -1,0 +1,10 @@
+variable_declaration
+1
+i
+main:
+variable_declaration
+1
+i
+variable_declaration
+1
+j

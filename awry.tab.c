@@ -1619,7 +1619,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 82 "awry.y"
-    { (yyval.tval) = make_node("","variable",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
+    { (yyval.tval) = make_node((yyvsp[(1) - (1)].tval)->item,"variable",(yyvsp[(1) - (1)].tval),NULL,NULL); ;}
     break;
 
   case 11:

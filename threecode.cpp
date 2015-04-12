@@ -28,10 +28,13 @@ string generatecode(ttnode *t)
 {
 	if(t->identifier == "variable_declaration")
 	{
+		//tcode << "variable_declaration" << endl;
 		vector<string> v = generatevars(t->second);
+		tcode << v.size() << endl;
 		for(int i=0;i<v.size();i++)
 		{
 			mipstable.add_var(symbol(v[i]));
+			tcode << v[i] << endl;
 		}
 		return def;
 	}

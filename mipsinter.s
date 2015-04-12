@@ -1,1 +1,3 @@
 .text
+main:
+jr	$ra
