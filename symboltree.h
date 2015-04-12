@@ -12,6 +12,7 @@ class param
 	public:
 		Type type;
 		string name;
+		param(string nm): name(nm), type(t_int) {}
 		string genKey()
 		{
 			return name + "." + "func";
