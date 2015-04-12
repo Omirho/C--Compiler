@@ -2352,6 +2352,7 @@ void yyerror(string s)
 
 int main()
 {
+	freopen("out.txt","w",stdout);
 	bool failure = yyparse();
 	failure |= fail;
 	if(failure) 

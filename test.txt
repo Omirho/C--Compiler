@@ -1,6 +1,17 @@
 int i;
 main
 {
-	int i;
-	int j;
+	int max;
+	max = 0;
+	while(1)
+	{
+		get(x);
+		if(x > max)
+		{
+			max = x;
+		}
+		if(x == 0)
+			{break;}
+		put(max);
+	}
 }
