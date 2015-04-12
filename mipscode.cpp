@@ -4,6 +4,7 @@ ofstream f("mips.s");
 string def = "";
 int tempco = 0;
 map<string,int> vars;
+vector<pair<string,string> > lit_strings;
 
 void genmips(string label,string op=def,string a1=def,string a2=def,string ret=def)
 {
@@ -32,6 +33,12 @@ void genmips(string label,string op=def,string a1=def,string a2=def,string ret=d
 	else if(op == "call")
 	{
 		mcode << "jal	" << a1 << endl;
+	}
+	else if(op == "puts")
+	{
+		mcode << "li	$v0, 4" << endl;
+		mcode << "la	$a0, " << a1 << endl;
+		mcode << "syscall" << endl;
 	}
 	else
 	{
@@ -172,6 +179,10 @@ void data()
 {
 	string s;
 	f << ".data" << endl;
+	for(int i=0;i<lit_strings.size();i++)
+	{
+		f << lit_strings[i].first << ":		.asciiz " << lit_strings[i].second << endl;
+	}
 	for(map<string,int> :: iterator i = vars.begin(); i != vars.end();i++)
 		f << i->first << ":		.word 0" << endl;
 	ifstream fin("mipsinter.s");

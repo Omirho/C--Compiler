@@ -227,6 +227,14 @@ string generatecode(ttnode *t)
 		genmips(def,"write",a);
 		return a;
 	}
+	if(t->identifier == "puts")
+	{
+		string s = getstrl();
+		pair<string,string> p = make_pair(s,t->first);
+		lit_strings.push_back(p);
+		tcode << "print " << s << endl;
+		genmips(def,"puts",s);
+	}
 	if(t->identifier == "expression")
 	{
 		string b;
