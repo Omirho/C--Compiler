@@ -81,7 +81,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 25 "awry.y"
+#line 26 "awry.y"
 
 	ttnode *tval;
 

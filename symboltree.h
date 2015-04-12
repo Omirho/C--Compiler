@@ -10,13 +10,13 @@ enum Type
 class param
 {
 	public:
-		Type t;
+		Type type;
 		string name;
 		string genKey()
 		{
-			return name + "." + type + "." + "func";
+			return name + "." + "func";
 		}
-}
+};
 
 class symbol
 {
@@ -32,7 +32,7 @@ public:
 	{
 		stringstream ss;
 		ss << scope;
-		return name + "." + type + "." + ss.str();
+		return name + "." + ss.str();
 	}
 	symbol(string nm, Type t, vector<param>& p): name(nm), paras(p), type(t), val(string()), param_count(p.size()) {}
 };
@@ -48,7 +48,7 @@ public:
     {
         for(int i = scope; i > 0; --i)
             if(table[i-1].count(id))
-                return table[i-1][id].genKey();
+                return table[i-1].find(id)->second.genKey();
         return string();
     }
 
@@ -72,11 +72,11 @@ public:
 	
 	vector<string> getparams(string id)
 	{
-		symbol func = table[1][id];
+		symbol func = table[1].find(id)->second;
 		vector<string> r;
 		for(int i = 0; i < func.param_count; ++i)
 		{
-			r.push_back(func.paras[i]);
+			r.push_back(func.paras[i].genKey());
 		}
 		return r;
 	}
@@ -86,7 +86,7 @@ public:
 		vector<string> back_var;
 		for(int i = 2; i <= scope; i++)
 			for(map<string,symbol>::iterator it = table[i-1].begin(); it != table[i-1].end(); ++it)
-				back_var.push_back(it -> genKey());
+				back_var.push_back(it -> second.genKey());
 		
 		for(int i = scope; i > 1; i--)
 			table.pop_back();

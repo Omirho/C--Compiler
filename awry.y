@@ -9,6 +9,7 @@
 using namespace std;
 #include "ttree.h"
 #include "ttfunc.cpp"
+#include "symboltree.h"
 #include "mipscode.cpp"
 #include "threecode.cpp"
 
