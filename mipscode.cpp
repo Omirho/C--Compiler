@@ -19,6 +19,20 @@ void genmips(string label,string op=def,string a1=def,string a2=def,string ret=d
 	{
 		mcode << "j		" << a1 << endl;
 	}
+	else if(op == "pushreturn")
+	{
+		mcode << "addi	$sp,$sp,-4" << endl;
+		mcode << "sw	$ra,0($sp)" << endl;
+	}
+	else if(op == "popreturn")
+	{
+		mcode << "lw	$ra,0($sp)" << endl;
+		mcode << "addi	$sp,$sp,4" << endl;	
+	}
+	else if(op == "call")
+	{
+		mcode << "jal	" << a1 << endl;
+	}
 	else
 	{
 		if(a1 != def)
@@ -44,6 +58,27 @@ void genmips(string label,string op=def,string a1=def,string a2=def,string ret=d
 				if(vars.find(a2) == vars.end())
 					vars[a2] = 1;
 			}
+		}
+		if(op == "restorereturn")
+		{
+			mcode << "sw	$v0, " << a1 << endl;
+		}
+		if(op == "copy")
+		{
+			mcode << "lw	$t8, " << a1 << endl;
+			mcode << "sw	$t8, " << a2 << endl;
+		}
+		if(op == "push")
+		{
+			mcode << "addi	$sp,$sp,-4" << endl;
+			mcode << "lw	$t8, " << a1 << endl;
+			mcode << "sw	$t8,0($sp)" << endl;
+		}
+		if(op == "pop")
+		{
+			mcode << "lw	$t8,0($sp)" << endl;
+			mcode << "sw	$t8, " << a1 << endl;
+			mcode << "addi	$sp,$sp,4" << endl;
 		}
 		if(op == "if")
 		{

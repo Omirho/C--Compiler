@@ -1,5 +1,7 @@
 ofstream tcode("threecode.txt");
 
+vector<string> generateargs(ttnode *t);
+
 string newlabel()
 {
 	static int c = 0;
@@ -165,9 +167,9 @@ string generatecode(ttnode *t)
 			string b = generatecode(t->first);
 			tcode << b << " = " << a << endl;
 			genmips(def,"+",a,"0",b);
-			return b;
 			string ret = newtemp();
 			tcode << ret << " = " << b << endl;
+			genmips(def,"+",b,"0",ret);
 			return ret;
 		}
 		else
@@ -284,7 +286,40 @@ string generatecode(ttnode *t)
 	}
 	if(t->identifier == "call")
 	{
-		//return t->first->item;
+		//evaluate arguments
+		vector<string> v = generateargs(t->first->first);
+		//vector<string> pars = getparanames(t->item);
+		//set arguments
+		// for(int i=0;i<v.size();i++)
+		// {
+			// tcode << "copy " << v[i] << " to " << pars[i] << endl;
+			// genmips(def,"copy",v[i],pars[i]);
+		// }
+		tcode << "push return address" << endl;
+		genmips(def,"pushreturn");
+		//backup variables
+		//vector<string> backvars = getbackvars();
+		// for(int i=0;i<backvars.size();i++)
+		// {
+			// tcode << "push " << backvars[i] << endl;
+			// genmips(def,"push",backvars[i]);
+		// }
+		//call function
+		//tcode << "call " << t->item << endl;
+		//genmips(def,"call",t->item);
+		//restore variables
+		// for(int i = backvars.size()-1;i>=0;i--)
+		// {
+			// tcode << "pop " << backvars[i] << endl;
+			// genmips(def,"pop",backvars[i]);
+		// }
+		//restore(backvars);
+		tcode << "pop return address" << endl;
+		genmips(def,"popreturn");
+		string ret = newtemp();
+		tcode << "assign return value" << endl;
+		genmips(def,"restorereturn",ret);
+		return ret;
 	}
 	if(t->identifier == "op1")
 	{
@@ -312,4 +347,22 @@ string generatecode(ttnode *t)
 			generatecode(t->third);
 		return def;
 	}
+}
+
+vector<string> generateargs(ttnode *t)
+{
+	vector<string> v;
+	if(t->item != "epsilon")
+	{
+		if(t->second == NULL)
+		{
+			v.push_back(generatecode(t->first));
+		}
+		else
+		{
+			v = generateargs(t->first);
+			v.push_back(generatecode(t->second));
+		}
+	}
+	return v;
 }
