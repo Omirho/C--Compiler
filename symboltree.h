@@ -35,7 +35,7 @@ public:
 		ss << scope;
 		return name + "." + ss.str();
 	}
-	symbol(string nm, Type t, vector<param>& p): name(nm), paras(p), type(t), val(string()), param_count(p.size()) {}
+	symbol(string nm, Type t, vector<param> p): name(nm), paras(p), type(t), val(string()), param_count(p.size()) {}
 };
 
 class symtable
@@ -43,7 +43,7 @@ class symtable
     int scope;
     vector < map < string, symbol > > table;
 public:
-    symtable(): scope(1) {table.push_back(map<string,symbol> ());}
+    symtable(): scope(1) {}
 
     string lookup(string id)
     {
