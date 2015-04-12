@@ -1,0 +1,7 @@
+threecode.txt
+*.txt
+*.s
+lex.yy.c
+awry.tab.h
+awry.tab.c
+awry.exe

@@ -1,1 +1,24 @@
 main:
+max = 0
+temp._1 = max
+label_1:
+if 1 goto label_2
+goto label_3
+label_2:
+read x
+temp._2 = x > max
+if temp._2 goto label_4
+goto label_5
+label_4:
+max = x
+temp._3 = max
+label_5:
+temp._4 = x == 0
+if temp._4 goto label_6
+goto label_7
+label_6:
+goto label_3
+label_7:
+write max
+goto label_1
+label_3:
