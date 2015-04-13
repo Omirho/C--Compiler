@@ -1,18 +1,18 @@
 #define DEBUG if(0)
-#define errlist cerr
+//#define errlist cerr
 
 class errcheck
 {
 	public:
 		symtable table;
-		bool err; 
+		int err; 
 		int inLoop;
 		symbol* infunc;
-		//stringstream errlist;
+		stringstream errlist;
 		errcheck(ttnode *t)
 		{
 			if(t == NULL) return;
-			err = false;
+			err = 0;
 			inLoop = 0;
 			infunc = new symbol("default",t_none);
 			check(t);
@@ -52,8 +52,8 @@ class errcheck
 			{
 				if(table.lookup_curscope(v[i]))
 				{
-					errlist << "Redeclared " << v[i] << endl;
-					err = true;
+					errlist << "Line " << t -> line_num << ": " << "Redeclared " << v[i] << endl;
+					err++;
 					continue;
 				}
 				table.add_var(symbol(v[i], t -> first -> type));
@@ -71,8 +71,8 @@ class errcheck
 				string f_name = t->item + "." + ss.str();
 				if(table.lookup(f_name) != string() and table.getparams(f_name).size() == v.size())
 				{
-					errlist << "Redeclared " << t -> item << ' ' << "with " << v.size() << "parameters" << endl;
-					err = true;
+					errlist << "Line " << t -> line_num << ": " << "Redeclared " << t -> item << ' ' << "with " << v.size() << "parameters" << endl;
+					err++;
 				}
 				table.add_var(symbol(f_name,t_func,t->type,v));
 				infunc = new symbol(f_name,t_func,table.getType(t->first->item),v);
@@ -114,8 +114,8 @@ class errcheck
 		{
 			if(table.lookup(t->first->item) == string())
 			{
-				errlist << t->first->item <<  " not declared " << endl;
-				err = true;
+				errlist << "Line " << t -> line_num << ": " << t->first->item <<  " not declared " << endl;
+				err++;
 				return;
 			}
 			t -> type = table.lookupX(t->first->item).type;
@@ -128,8 +128,8 @@ class errcheck
 				DEBUG cerr << "Found Break\n";
 				if(!inLoop)
 				{
-					errlist << "Found break without loop\n";
-					err = true;
+					errlist << "Line " << t -> line_num << ": " << "Found break without loop\n";
+					err++;
 				}
 			}
 			else if(t->item == "continue")
@@ -137,8 +137,8 @@ class errcheck
 				DEBUG cerr << "Found Continue\n";
 				if(!inLoop)
 				{
-					errlist << "Found continue without loop\n";
-					err = true;
+					errlist << "Line " << t -> line_num << ": " << "Found continue without loop\n";
+					err++;
 				}
 			}
 			else
@@ -185,8 +185,8 @@ class errcheck
 		{
 			if(infunc -> type == t_none)
 			{
-				errlist << "Whoa! Return to mars? Found return without function\n";
-				err = true;
+				errlist << "Line " << t -> line_num << ": " << "Whoa! Return to mars? Found return without function\n";
+				err++;
 				return;
 			}
 			else if(t->item == "op")
@@ -194,9 +194,9 @@ class errcheck
 				check(t->second);
 				if(t->second->type != infunc->ret_type)
 				{
-					errlist << "Return type mismatch in function " << infunc->name << endl;
+					errlist << "Line " << t -> line_num << ": " << "Return type mismatch in function " << infunc->name << endl;
 					DEBUG cerr << table.typetostring(t->second->type) << ' ' << table.typetostring(infunc->ret_type) << endl; 
-					err = true;
+					err++;
 				}
 				DEBUG cerr << "Return with op" << endl;
 			}
@@ -216,9 +216,9 @@ class errcheck
 				Type t2 = t -> first -> type;
 				if(t1 != t2)
 				{
-					errlist << "Expression type mismatch." << endl;
+					errlist << "Line " << t -> line_num << ": " << "Expression type mismatch." << endl;
 					DEBUG cerr << t1 << ' ' << t2 << endl; 
-					err = true;
+					err++;
 				}
 				t -> type = t -> first -> type;
 			}
@@ -239,8 +239,8 @@ class errcheck
 				Type t2 = t -> first -> type;
 				if(t1 != t2)
 				{
-					errlist << "Expression type mismatch." << endl;
-					err = true;
+					errlist << "Line " << t -> line_num << ": " << "Expression type mismatch." << endl;
+					err++;
 				}
 				t -> type = t_bool;
 			}
@@ -277,8 +277,8 @@ class errcheck
 			t -> type = t_int;
 			if(!table.lookupfunc(t->item))
 			{
-				errlist << t->item << " function not declared." << endl;
-				err = true;
+				errlist << "Line " << t -> line_num << ": " << t->item << " function not declared." << endl;
+				err++;
 				return;
 			}
 			
@@ -290,8 +290,8 @@ class errcheck
 			
 			if(table.lookup(f_name) == string())
 			{
-				errlist << "No function with name " << t -> item << " and " << v.size() << " parameters declared.\n";
-				err = true;
+				errlist << "Line " << t -> line_num << ": " << "No function with name " << t -> item << " and " << v.size() << " parameters declared.\n";
+				err++;
 				return;
 			}
 		
@@ -301,9 +301,9 @@ class errcheck
 			{
 				if(v[i] != pars[i])
 				{
-					errlist << "Type mismatch for parameter " << i+1 << " in " << t -> item << ". " ;
-					errlist << table.typetostring(pars[i]) << " required. " << table.typetostring(v[i]) << " given." << endl;
-					err = true;
+					errlist << "Line " << t -> line_num << ": " << "Type mismatch for parameter " << i+1 << " in " << t -> item << ". " ;
+					errlist << table.typetostring(pars[i]) << " required, " << table.typetostring(v[i]) << " given." << endl;
+					err++;
 					return;
 				}
 			}
@@ -319,8 +319,8 @@ class errcheck
 				t -> type = t -> second -> type;
 				if(t -> type != t_int and t -> type != t_float)
 				{
-					errlist << "Unary operator can only be applied on ints and floats.\n";
-					err = true;
+					errlist << "Line " << t -> line_num << ": " << "Unary operator can only be applied on ints and floats.\n";
+					err++;
 				}
 			}
 			else
@@ -339,9 +339,9 @@ class errcheck
 				check(t->second);
 				if(t -> first -> type != t -> third -> type)
 				{
-					errlist << "Arithmetic expression type mismatch." << endl;
+					errlist << "Line " << t -> line_num << ": " << "Arithmetic expression type mismatch." << endl;
 					DEBUG cerr << table.typetostring(t->first->type) << ' ' << table.typetostring(t->third->type) << endl; 
-					err = true;
+					err++;
 				}
 			}
 			else
@@ -373,9 +373,9 @@ class errcheck
 				check(t->first);
 				if(t -> first -> type != t -> third -> type)
 				{
-					errlist << "Relational expression type mismatch." << endl;
+					errlist << "Line " << t -> line_num << ": " << "Relational expression type mismatch." << endl;
 					DEBUG cerr << table.typetostring(t->first->type) << ' ' << table.typetostring(t->third->type) << endl; 
-					err = true;
+					err++;
 				}
 				t -> type = t_bool;
 			}

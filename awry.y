@@ -349,10 +349,10 @@ int main()
 	bool failure = yyparse();
 	errcheck catchemall(root);
 	failure |= catchemall.err;
-	//if(catchemall.err) cerr << catchemall.errlist.str() << endl;
+	if(catchemall.err) cerr << catchemall.errlist.str() << endl;
 	failure |= fail;
 	if(failure) 
-		std::cerr << "Parsing Failed\n";
+		std::cerr << "Compilation Failed.\n" << catchemall.err << " error" << (catchemall.err>1?"s have":" has") << " been found.\n";
 	else
 	{
 		cerr << "Success!\n";

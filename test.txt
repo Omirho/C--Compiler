@@ -20,7 +20,10 @@ main
 	int z;
 	z = 1;
 	z = fib(10);
-	put(z);
+	fib(true,true);
+	fib(1,true);
+	fib(true,1);
+	fib(1,1);
 	puts("\n");
 	z = fib(2,true);
 	put(z);

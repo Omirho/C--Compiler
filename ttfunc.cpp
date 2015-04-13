@@ -1,3 +1,4 @@
+extern int yylineno;
 ttnode *make_node(string sval,string identifier, ttnode *n1, ttnode *n2, ttnode *n3)
 {
 	ttnode *n = new ttnode();
@@ -6,6 +7,7 @@ ttnode *make_node(string sval,string identifier, ttnode *n1, ttnode *n2, ttnode 
 	n->first = n1;
 	n->second = n2;
 	n->third = n3;
+	n->line_num = yylineno;
 	return n;
 }
 

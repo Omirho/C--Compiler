@@ -12,6 +12,7 @@ class ttnode
 public:
 	string item,identifier,name;
 	Type type;
+	int line_num;
 	ttnode *first, *second, *third;
 	ttnode() 
 	{ 
