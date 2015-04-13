@@ -292,13 +292,13 @@ argument_list
 
 constants 
 	: INT_CONSTANT
-		{ $$ = make_node("","constants",$1,NULL,NULL); }
+		{ $$ = make_node("","constants",$1,NULL,NULL); $$ -> type = t_int;}
 	| FLOAT_CONSTANT
-		{ $$ = make_node("","constants",$1,NULL,NULL); }
+		{ $$ = make_node("","constants",$1,NULL,NULL); $$ -> type = t_float;}
 	| TRUE 
-		{ $$ = make_node("","constants",$1,NULL,NULL); }
+		{ $$ = make_node("","constants",$1,NULL,NULL); $$ -> type = t_bool;}
 	| FALSE
-		{ $$ = make_node("","constants",$1,NULL,NULL); }
+		{ $$ = make_node("","constants",$1,NULL,NULL); $$ -> type = t_bool;}
 	;
 
 op1 

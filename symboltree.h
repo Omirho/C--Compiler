@@ -91,6 +91,18 @@ public:
 		return r;
 	}
 	
+	vector<Type> getparamtype(string id)
+	{
+		assert(table[0].count(id) > 0);
+		symbol func = table[0].find(id)->second;
+		vector<Type> r;
+		for(int i = 0; i < func.param_count; ++i)
+		{
+			r.push_back(symbol (func.paras[i].name, func.paras[i].type, func.scope + 1).type);
+		}
+		return r;
+	}
+	
 	vector<string> backup()
 	{
 		vector<string> back_var;
@@ -112,6 +124,12 @@ public:
 				return static_cast<Type>(i);
 		}
 		return t_none;
+	}
+	
+	string typetostring(Type t)
+	{
+		string Types[] = {"none", "int", "float", "bool", "func"};
+		return Types[t];
 	}
 	
 	void restore(vector<string> back_var)

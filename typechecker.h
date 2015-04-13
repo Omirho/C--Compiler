@@ -20,7 +20,7 @@ class errcheck
 		
 		void check(ttnode *t)
 		{
-			if(t != NULL) DEBUG cerr << t -> identifier <<' ' << t -> item << endl;
+			//if(t != NULL) DEBUG cerr << t -> identifier <<' ' << t -> item << endl;
 			if(t == NULL) return;
 			else if(t -> identifier == "variable_declaration")		vardec(t);
 			else if(t -> identifier == "function_declaration") 		fundec(t); 		
@@ -181,7 +181,7 @@ class errcheck
 				if(t->second->type != infunc->ret_type)
 				{
 					errlist << "Return type mismatch in function " << infunc->name << endl;
-					DEBUG cerr << t->second->type << ' ' << infunc->ret_type << endl; 
+					DEBUG cerr << table.typetostring(t->second->type) << ' ' << table.typetostring(infunc->ret_type) << endl; 
 					err = true;
 				}
 				DEBUG cerr << "Return with op" << endl;
@@ -210,8 +210,8 @@ class errcheck
 			}
 			else
 			{
-				t -> type = t_bool;
 				check(t -> first);
+				t -> type = t -> first -> type;
 			}
 		}
 		
@@ -228,12 +228,64 @@ class errcheck
 					errlist << "Expression type mismatch." << endl;
 					err = true;
 				}
-				t -> type = t -> first -> type;
+				t -> type = t_bool;
 			}
 			else
 			{
-				t -> type = t_bool;
 				check(t -> first);
+				t -> type = t -> first -> type;
 			}
+		}
+		
+		vector<Type> generateargtype(ttnode *t)
+		{
+			vector<Type> v;
+			if(t->item != "epsilon")
+			{
+				if(t->second == NULL)
+				{
+					check(t -> first);
+					v.push_back(t -> second -> type);
+				}
+				else
+				{
+					v = generateargtype(t->first);
+					check(t -> second);
+					v.push_back(t -> second -> type);
+				}
+			}
+			return v;
+		}
+		
+		void callcheck(ttnode *t)
+		{
+			if(table.lookup(t->item) == string())
+			{
+				errlist << t->item << " function not declared." << endl;
+				err = true;
+				return;
+			}
+			
+			vector<Type> v = generateargtype(t->first->first);
+			vector<Type> pars = table.getparamtype(t->item);
+			if(v.size() != pars.size())
+			{
+				errlist << t->item << ": " << pars.size() <<" parameters are allowed. " << v.size() << " passed." << endl;
+				err = true;
+				return;
+			}
+		
+			for(int i = 0; i < v.size(); i++)
+			{
+				if(v[i] != pars[i])
+				{
+					errlist << "Type mismatch for parameter " << i+1 << " in " << t -> item << ". " ;
+					errlist << table.typetostring(pars[i]) << " required. " << table.typetostring(v[i]) << " given." << endl;
+					err = true;
+					return;
+				}
+			}
+			
+			t -> type = table.lookupX(t->item).ret_type;
 		}
 };	
