@@ -101,6 +101,7 @@ class errcheck
 			}
 			table.remove_scope();
 			infunc -> type = t_none;
+			infunc -> name = "main";
 		}
 		
 		void maincheck(ttnode *t)
@@ -183,18 +184,12 @@ class errcheck
 		
 		void retcheck(ttnode *t)
 		{
-			if(infunc -> type == t_none)
-			{
-				errlist << "Line " << t -> line_num << ": " << "Whoa! Return to mars? Found return without function\n";
-				err++;
-				return;
-			}
-			else if(t->item == "op")
+			if(t->item == "op")
 			{
 				check(t->second);
 				if(t->second->type != infunc->ret_type)
 				{
-					errlist << "Line " << t -> line_num << ": " << "Return type mismatch in function " << infunc->name << endl;
+					errlist << "Line " << t -> line_num << ": " << "Return type mismatch in function " << infunc->name.substr(0,infunc-> name.find_first_of('.')) << endl;
 					DEBUG cerr << table.typetostring(t->second->type) << ' ' << table.typetostring(infunc->ret_type) << endl; 
 					err++;
 				}
