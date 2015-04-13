@@ -105,7 +105,7 @@ epsilon
 
 function_declaration 
 	: type IDENTIFIER '(' parameters ')' '{' code_block '}' 
-		{ $$ = make_node($2->item,"function_declaration",$1,$4,$7); }
+		{ $$ = make_node($2->item,"function_declaration",$1,$4,$7); $$ -> type = $1 -> type;}
 	| IDENTIFIER '(' parameters ')' '{' code_block '}'
 		{ $$ = make_node($1->item,"function_declaration",$3,$6,NULL); }
 	;
@@ -126,7 +126,7 @@ parameter_list
 
 parameter 
 	: type variable
-		{ $$ = make_node("","parameter",$1,$2,NULL); $$ -> type =  $2 -> type = $1 -> type; cerr << $2 -> item << "***" << endl;}
+		{ $$ = make_node("","parameter",$1,$2,NULL); $$ -> type =  $2 -> type = $1 -> type;}
 	;
 	
 main_function 

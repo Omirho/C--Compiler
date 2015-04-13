@@ -1,4 +1,4 @@
-#define DEBUG if(1)
+#define DEBUG if(0)
 #define errlist cerr
 
 class errcheck
@@ -69,13 +69,12 @@ class errcheck
 				stringstream ss;
 				ss << v.size();
 				string f_name = t->item + "." + ss.str();
-				cerr << f_name << "..........................ADDED"<<endl;
 				if(table.lookup(f_name) != string() and table.getparams(f_name).size() == v.size())
 				{
 					errlist << "Redeclared " << t -> item << ' ' << "with " << v.size() << "parameters" << endl;
 					err = true;
 				}
-				table.add_var(symbol(f_name,t_func,v));
+				table.add_var(symbol(f_name,t_func,t->type,v));
 				infunc = new symbol(f_name,t_func,table.getType(t->first->item),v);
 				table.add_scope();
 				for(int i=0;i<v.size();i++)
@@ -289,14 +288,14 @@ class errcheck
 			ss << v.size();
 			string f_name = t->item + "." + ss.str();
 			
-			vector<Type> pars = table.getparamtype(f_name);
-			
-			if(v.size() != pars.size())
+			if(table.lookup(f_name) == string())
 			{
 				errlist << "No function with name " << t -> item << " and " << v.size() << " parameters declared.\n";
 				err = true;
 				return;
 			}
+		
+			vector<Type> pars = table.getparamtype(f_name);
 		
 			for(int i = 0; i < v.size(); i++)
 			{
@@ -308,8 +307,7 @@ class errcheck
 					return;
 				}
 			}
-			cerr << "REACHED#######################################################################\n";
-			cerr << f_name << "***" << table.lookupX(f_name).ret_type << endl;
+		
 			t -> type = table.lookupX(f_name).ret_type;
 		}
 		

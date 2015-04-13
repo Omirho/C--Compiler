@@ -1,8 +1,11 @@
 int i;
-int fib(int x,int y)
+int fib(int x, bool y)
 {
-	return x+y;
+	if(y){
+	return x;
+	}
 }
+
 int fib(int x)
 {
 	if(x<=2)
@@ -11,12 +14,14 @@ int fib(int x)
 	}
 	return fib(x-1) + fib(x-2);
 }
+
 main
 {
-	int z;
-	z = 5;
+	bool z;
+	z = 1;
 	z = fib(10);
+	z = fib(10,20,25);
 	put(z);
-	z = fib(2,3);
+	z = fib(2,true);
 	put(z);
 }
