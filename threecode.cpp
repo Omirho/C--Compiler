@@ -478,12 +478,13 @@ vector<param> generatepars(ttnode *t)
 	{
 		if(t->second == NULL)
 		{
-			v.push_back(param(t->first->second->first->item));
+			//v.push_back(param(t->first->second->first->item));
+			v.push_back(param(t->first->second->first->item,t->first->type));
 		}
 		else
 		{
 			v = generatepars(t->first);
-			v.push_back(param(t->second->second->first->item));
+			v.push_back(param(t->second->second->first->item,t->second->type));
 		}
 	}
 	return v;

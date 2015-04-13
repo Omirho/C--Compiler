@@ -4,6 +4,7 @@ class param
 		Type type;
 		string name;
 		param(string nm): name(nm), type(t_int) {}
+		param(string nm, Type t): name(nm), type(t) {}
 		string genKey()
 		{
 			return name + "." + "func";
@@ -91,6 +92,15 @@ public:
 		return r;
 	}
 	
+	bool lookupfunc(string id)
+	{
+		for(int i = scope; i > 0; --i)
+			for(map < string, symbol > :: iterator it = table[i-1].begin(); it != table[i-1].end(); it++)
+				if(it -> first.find_first_of('.') != string :: npos and id == it -> first.substr(0,it -> first.find_first_of('.')))
+					return true;
+        return false;
+	}
+	
 	vector<Type> getparamtype(string id)
 	{
 		assert(table[0].count(id) > 0);
@@ -98,7 +108,7 @@ public:
 		vector<Type> r;
 		for(int i = 0; i < func.param_count; ++i)
 		{
-			r.push_back(symbol (func.paras[i].name, func.paras[i].type, func.scope + 1).type);
+			r.push_back(func.paras[i].type);
 		}
 		return r;
 	}

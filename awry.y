@@ -86,11 +86,11 @@ variable
 
 type 
 	: INT 
-		{ $$ = make_node("int","type",$1,NULL,NULL); }
+		{ $$ = make_node("int","type",$1,NULL,NULL); $$ -> type = t_int; }
 	| FLOAT
-		{ $$ = make_node("float","type",$1,NULL,NULL); }
+		{ $$ = make_node("float","type",$1,NULL,NULL); $$ -> type = t_float; }
 	| BOOL
-		{ $$ = make_node("bool","type",$1,NULL,NULL); }
+		{ $$ = make_node("bool","type",$1,NULL,NULL); $$ -> type = t_bool;}
 	;
 
 string_literal
@@ -114,19 +114,19 @@ parameters
 	: parameter_list 
 		{ $$ = make_node("","parameters",$1,NULL,NULL); }
 	| epsilon
-		{ $$ = make_node("","parameters",$1,NULL,NULL); }
+		{ $$ = make_node("","parameters",$1,NULL,NULL);}
 	;
 	
 parameter_list 
 	: parameter_list ',' parameter 
-		{ $$ = make_node("","parameter_list",$1,$3,NULL); }
+		{ $$ = make_node("","parameter_list",$1,$3,NULL);}
 	| parameter
 		{ $$ = make_node("","parameter_list",$1,NULL,NULL); }
 	;
 
 parameter 
 	: type variable
-		{ $$ = make_node("","parameter",$1,$2,NULL); }
+		{ $$ = make_node("","parameter",$1,$2,NULL); $$ -> type =  $2 -> type = $1 -> type; cerr << $2 -> item << "***" << endl;}
 	;
 	
 main_function 

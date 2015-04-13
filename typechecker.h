@@ -20,7 +20,7 @@ class errcheck
 		
 		void check(ttnode *t)
 		{
-			//if(t != NULL) DEBUG cerr << t -> identifier <<' ' << t -> item << endl;
+			
 			if(t == NULL) return;
 			else if(t -> identifier == "variable_declaration")		vardec(t);
 			else if(t -> identifier == "function_declaration") 		fundec(t); 		
@@ -34,7 +34,15 @@ class errcheck
 			else if(t -> identifier == "expression")				expcheck(t);	
 			else if(t -> identifier == "and_expression")			boolecheck(t);	
 			else if(t -> identifier == "logic_expression")			boolecheck(t);	
+			else if(t -> identifier == "call")						callcheck(t);	
+			else if(t -> identifier == "mul_expression")			arexcheck(t);	
+			else if(t -> identifier == "simple_expression")			arexcheck(t);	
+			else if(t -> identifier == "unary_expression")			unicheck(t);	
+			else if(t -> identifier == "relation_expression")		relexcheck(t);	
+			else if(t -> identifier == "climax")					climcheck(t);	
 			else	{check(t->first); check(t->second); check(t->third);}
+			
+			if(t != NULL) DEBUG cerr << t -> identifier << ' ' << t -> item << ' ' << table.typetostring(t->type) << endl;
 		}
 		
 		void vardec(ttnode *t)
@@ -48,7 +56,7 @@ class errcheck
 					err = true;
 					continue;
 				}
-				table.add_var(symbol(v[i]));
+				table.add_var(symbol(v[i], t -> first -> type));
 				DEBUG cerr << "declared " << v[i] << endl;
 			}
 		}
@@ -58,26 +66,33 @@ class errcheck
 			if(t->third != NULL)
 			{
 				vector<param> v = generatepars(t->second->first);
-				if(table.lookup(t->item) != string() and table.getparams(t->item).size() == v.size())
+				stringstream ss;
+				ss << v.size();
+				string f_name = t->item + "." + ss.str();
+				cerr << f_name << "..........................ADDED"<<endl;
+				if(table.lookup(f_name) != string() and table.getparams(f_name).size() == v.size())
 				{
 					errlist << "Redeclared " << t -> item << ' ' << "with " << v.size() << "parameters" << endl;
 					err = true;
 				}
-				table.add_var(symbol(t->item,t_func,v));
-				infunc = new symbol(t->item,t_func,table.getType(t->first->item),v);
+				table.add_var(symbol(f_name,t_func,v));
+				infunc = new symbol(f_name,t_func,table.getType(t->first->item),v);
 				table.add_scope();
 				for(int i=0;i<v.size();i++)
 				{
-					table.add_var(symbol(v[i].name));
-					DEBUG cerr << "parameter " << v[i].name << endl;
+					table.add_var(symbol(v[i].name,v[i].type));
+					DEBUG cerr << "parameter " << v[i].name << ' ' << table.typetostring(v[i].type) << endl;
 				}
 				check(t->third);
 			}
 			else
 			{
+				stringstream ss;
+				ss << 0;
+				string f_name = t->item + "." + ss.str();
 				vector<param> v = generatepars(t->first->first);
-				table.add_var(symbol(t->item,t_func,v));
-				infunc = new symbol(t->item,t_func,v);
+				table.add_var(symbol(f_name,t_func,v));
+				infunc = new symbol(f_name,t_func,v);
 				table.add_scope();
 				for(int i=0;i<v.size();i++)
 				{
@@ -245,10 +260,11 @@ class errcheck
 				if(t->second == NULL)
 				{
 					check(t -> first);
-					v.push_back(t -> second -> type);
+					v.push_back(t -> first -> type);
 				}
 				else
 				{
+					check(t -> first);
 					v = generateargtype(t->first);
 					check(t -> second);
 					v.push_back(t -> second -> type);
@@ -259,7 +275,8 @@ class errcheck
 		
 		void callcheck(ttnode *t)
 		{
-			if(table.lookup(t->item) == string())
+			t -> type = t_int;
+			if(!table.lookupfunc(t->item))
 			{
 				errlist << t->item << " function not declared." << endl;
 				err = true;
@@ -267,10 +284,16 @@ class errcheck
 			}
 			
 			vector<Type> v = generateargtype(t->first->first);
-			vector<Type> pars = table.getparamtype(t->item);
+			
+			stringstream ss;
+			ss << v.size();
+			string f_name = t->item + "." + ss.str();
+			
+			vector<Type> pars = table.getparamtype(f_name);
+			
 			if(v.size() != pars.size())
 			{
-				errlist << t->item << ": " << pars.size() <<" parameters are allowed. " << v.size() << " passed." << endl;
+				errlist << "No function with name " << t -> item << " and " << v.size() << " parameters declared.\n";
 				err = true;
 				return;
 			}
@@ -285,7 +308,83 @@ class errcheck
 					return;
 				}
 			}
-			
-			t -> type = table.lookupX(t->item).ret_type;
+			cerr << "REACHED#######################################################################\n";
+			cerr << f_name << "***" << table.lookupX(f_name).ret_type << endl;
+			t -> type = table.lookupX(f_name).ret_type;
+		}
+		
+		void unicheck(ttnode* t)
+		{
+			if(t -> item == "op")
+			{
+				check(t -> second);
+				t -> type = t -> second -> type;
+				if(t -> type != t_int and t -> type != t_float)
+				{
+					errlist << "Unary operator can only be applied on ints and floats.\n";
+					err = true;
+				}
+			}
+			else
+			{
+				check(t -> first);
+				t -> type = t -> first -> type;
+			}
+		}
+		
+		void arexcheck(ttnode* t)
+		{
+			if(t->item == "op")
+			{
+				check(t->third);
+				check(t->first);
+				check(t->second);
+				if(t -> first -> type != t -> third -> type)
+				{
+					errlist << "Arithmetic expression type mismatch." << endl;
+					DEBUG cerr << table.typetostring(t->first->type) << ' ' << table.typetostring(t->third->type) << endl; 
+					err = true;
+				}
+			}
+			else
+			{
+				check(t->first);
+			}
+			t -> type = t -> first -> type;
+		}
+		
+		void climcheck(ttnode *t)
+		{
+			if(t->item == "op")
+			{
+				check(t->second);
+				t -> type = t -> second -> type;
+			}
+			else
+			{
+				check(t->first);
+				t -> type = t -> first -> type;
+			}
+		}
+		
+		void relexcheck(ttnode *t)
+		{
+			if(t->item == "op")
+			{
+				check(t->third);
+				check(t->first);
+				if(t -> first -> type != t -> third -> type)
+				{
+					errlist << "Relational expression type mismatch." << endl;
+					DEBUG cerr << table.typetostring(t->first->type) << ' ' << table.typetostring(t->third->type) << endl; 
+					err = true;
+				}
+				t -> type = t_bool;
+			}
+			else
+			{
+				check(t->first);
+				t -> type = t -> first -> type;
+			}
 		}
 };	
