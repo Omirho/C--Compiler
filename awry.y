@@ -345,7 +345,7 @@ void yyerror(string s)
 
 int main()
 {
-	//freopen("test.txt","r",stdin);
+	freopen("test.txt","r",stdin);
 	bool failure = yyparse();
 	errcheck catchemall(root);
 	failure |= catchemall.err;

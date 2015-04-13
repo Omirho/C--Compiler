@@ -38,7 +38,7 @@ public:
 class symtable
 {
     int scope;
-    vector < map < string, symbol > > table;
+    vector < map < string, symbol > > table, back_tab;
 public:
     symtable(): scope(1) { table.push_back(map<string,symbol>());}
 
@@ -66,6 +66,7 @@ public:
     {
         table.push_back(map<string,symbol>());
         scope++;
+		//add_var(symbol("__dabba_var", t_none));
     }
 
     void remove_scope()
@@ -116,6 +117,7 @@ public:
 	vector<string> backup()
 	{
 		vector<string> back_var;
+		back_tab = table;
 		for(int i = 2; i <= scope; i++)
 			for(map<string,symbol>::iterator it = table[i-1].begin(); it != table[i-1].end(); ++it)
 				back_var.push_back(it -> second.genKey());
@@ -144,21 +146,7 @@ public:
 	
 	void restore(vector<string> back_var)
 	{
-		vector<symbol> vs;
-		string name, type;
-		int _scope, max_scope = -1;
-		for(int i = 0; i < back_var.size(); ++i)
-		{
-			replace(back_var[i].begin(), back_var[i].end(), '.', ' ');
-			stringstream ss(back_var[i]);
-			ss >> name >> type >> _scope;
-			max_scope = max(max_scope, _scope);
-			vs.push_back(symbol(name, getType(type), _scope));
-		}
-		for(int i = 1; i < max_scope; ++i)
-			 table.push_back(map<string,symbol>());
-		for(int i = 0; i < vs.size(); i++)
-			table[vs[i].scope - 1].insert(make_pair(vs[i].name,vs[i]));
-		scope = max_scope;
+		table = back_tab;
+		scope = table.size();
 	}
 };

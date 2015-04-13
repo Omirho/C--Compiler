@@ -441,7 +441,7 @@ string generatecode(ttnode *t)
 vector<string> generateargs(ttnode *t)
 {
 	vector<string> v;
-	if(t->item != "epsilon")
+	if(t->identifier != "epsilon")
 	{
 		if(t->second == NULL)
 		{
@@ -474,7 +474,7 @@ vector<string> generatevars(ttnode *t)
 vector<param> generatepars(ttnode *t)
 {
 	vector<param> v;
-	if(t->item != "epsilon")
+	if(t->identifier != "epsilon")
 	{
 		if(t->second == NULL)
 		{

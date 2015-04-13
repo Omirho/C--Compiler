@@ -86,12 +86,12 @@ class errcheck
 			}
 			else
 			{
-				stringstream ss;
-				ss << 0;
-				string f_name = t->item + "." + ss.str();
 				vector<param> v = generatepars(t->first->first);
-				table.add_var(symbol(f_name,t_func,v));
-				infunc = new symbol(f_name,t_func,v);
+				stringstream ss;
+				ss << v.size();
+				string f_name = t->item + "." + ss.str();
+				table.add_var(symbol(f_name,t_func,t_none,v));
+				infunc = new symbol(f_name,t_func,t_none,v);
 				table.add_scope();
 				for(int i=0;i<v.size();i++)
 				{
@@ -249,7 +249,7 @@ class errcheck
 		vector<Type> generateargtype(ttnode *t)
 		{
 			vector<Type> v;
-			if(t->item != "epsilon")
+			if(t->identifier != "epsilon")
 			{
 				if(t->second == NULL)
 				{
@@ -282,7 +282,6 @@ class errcheck
 			stringstream ss;
 			ss << v.size();
 			string f_name = t->item + "." + ss.str();
-			
 			if(table.lookup(f_name) == string())
 			{
 				errlist << "Line " << t -> line_num << ": " << "No function with name " << t -> item << " and " << v.size() << " parameters declared.\n";
