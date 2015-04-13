@@ -3,25 +3,19 @@ int fib(int x)
 {
 	if(x<=2)
 	{
-		return x;
+		return 1;
 	}
 	return fib(x-1) + fib(x-2);
-}
-
-int fib(int x, bool y)
-{
-	if(y){
-	return x;
-	}
 }
 
 main
 {
 	int z;
-	z = 1;
-	z = fib(10);
-	put(z);
-	puts("\n");
-	z = fib(2,true);
-	put(z);
+	foreach(z in 11)
+	{
+		int i;
+		i = fib(z+1);
+		put(i);
+		puts("\n");
+	}
 }
