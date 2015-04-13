@@ -1,11 +1,4 @@
 int i;
-int fib(int x, bool y)
-{
-	if(y){
-	return x;
-	}
-}
-
 int fib(int x)
 {
 	if(x<=2)
@@ -15,13 +8,20 @@ int fib(int x)
 	return fib(x-1) + fib(x-2);
 }
 
+int fib(int x, bool y)
+{
+	if(y){
+	return x;
+	}
+}
+
 main
 {
-	bool z;
+	int z;
 	z = 1;
 	z = fib(10);
-	z = fib(10,20,25);
 	put(z);
+	puts("\n");
 	z = fib(2,true);
 	put(z);
 }

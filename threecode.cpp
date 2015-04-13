@@ -56,7 +56,7 @@ string generatecode(ttnode *t)
 			tcode << "_"+t->item+"_"+ss.str() << ":" << endl;
 			genmips("_"+t->item+"_"+ss.str());
 			//tcode << v.size() << endl;
-			mipstable.add_var(symbol(t->item,t_int,v));
+			mipstable.add_var(symbol(t->item+"_"+ss.str(),t_int,v));
 			mipstable.add_scope();
 			for(int i=0;i<v.size();i++)
 			{
@@ -373,7 +373,9 @@ string generatecode(ttnode *t)
 	{
 		//evaluate arguments
 		vector<string> v = generateargs(t->first->first);
-		vector<string> pars = mipstable.getparams(t->item);
+		stringstream ss;
+		ss << v.size();
+		vector<string> pars = mipstable.getparams(t->item+"_"+ss.str());
 		tcode << "push return address" << endl;
 		genmips(def,"pushreturn");
 		//backup variables
@@ -384,6 +386,7 @@ string generatecode(ttnode *t)
 			genmips(def,"push",backvars[i]);
 		}
 		//set arguments
+		//tcode << pars.size() << " " << v.size() << endl;
 		for(int i=0;i<v.size();i++)
 		{
 			//tcode << "argument " << v[i] << endl;
@@ -391,8 +394,6 @@ string generatecode(ttnode *t)
 			genmips(def,"copy",v[i],pars[i]);
 		}
 		//call function
-		stringstream ss;
-		ss << v.size();
 		tcode << "call " << "_"+t->item+"_"+ss.str() << endl;
 		genmips(def,"call","_"+t->item+"_"+ss.str());
 		//restore variables
